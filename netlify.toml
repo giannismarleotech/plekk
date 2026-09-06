@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = ["drizzle/**", "node_modules/@electric-sql/pglite/dist/**"]
+  node_bundler = "esbuild"
+
+# Herinneringen elk uur (Netlify scheduled function roept de Next-route aan)
+[functions."reminders-cron"]
+  schedule = "@hourly"
