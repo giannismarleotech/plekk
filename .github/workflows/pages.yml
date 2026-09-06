@@ -1,0 +1,38 @@
+# Zet de marketingsite (4 talen) automatisch op GitHub Pages bij elke push naar main.
+# Eenmalig in de repo: Settings → Pages → Source: "GitHub Actions".
+name: Website naar GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - name: Statische build (alleen de website; app-routes hebben een server nodig)
+        run: node scripts/build-static.mjs
+        env:
+          # Laat leeg voor <gebruiker>.github.io/<repo>. Zet op "" via een eigen domein (CNAME) in Settings → Pages.
+          STATIC_BASE_PATH: ${{ github.event.repository.name == format('{0}.github.io', github.repository_owner) && '' || format('/{0}', github.event.repository.name) }}
+          # Vul in zodra de app ergens draait (Netlify/Vercel), dan werken de demo- en loginknoppen weer.
+          NEXT_PUBLIC_APP_BASE: ${{ vars.APP_BASE || '' }}
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: out }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: ${{ steps.deployment.outputs.page_url }} }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
