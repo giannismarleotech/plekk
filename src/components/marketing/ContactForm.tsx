@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Dictionary } from "@/i18n";
+import { appAvailable, appUrl } from "@/config/app-url";
 
 /** Contactformulier: stuurt naar /api/contact (mail via Resend als die geconfigureerd is, anders logging). */
 export function ContactForm({ d }: { d: Dictionary }) {
@@ -10,8 +11,14 @@ export function ContactForm({ d }: { d: Dictionary }) {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setState("sending");
-    const body = Object.fromEntries(new FormData(e.currentTarget).entries());
-    const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const body = Object.fromEntries(new FormData(e.currentTarget).entries()) as Record<string, string>;
+    if (!appAvailable) {
+      // Statische site zonder server: open het mailprogramma met de ingevulde gegevens.
+      const text = `Naam: ${body.name}\nE-mail: ${body.email}\nZaak: ${body.business ?? ""}\nType: ${body.type ?? ""}\n\n${body.message ?? ""}`;
+      window.location.href = `mailto:${c.email}?subject=${encodeURIComponent(`Plekk: ${body.business || body.name}`)}&body=${encodeURIComponent(text)}`;
+      setState("sent"); return;
+    }
+    const res = await fetch(appUrl("/api/contact"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
     setState(res.ok ? "sent" : "error");
   }
   if (state === "sent") return <div className="card p-8 text-center"><p className="text-2xl font-bold">✓</p><p className="mt-2 font-semibold">{c.formNote}</p></div>;

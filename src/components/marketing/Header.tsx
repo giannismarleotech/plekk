@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Logo } from "@/components/Logo";
 import { href, locales, localeNames, type Dictionary, type Locale, type PageKey } from "@/i18n";
+import { appUrl, appAvailable } from "@/config/app-url";
 
 export function Header({ lang, d, page }: { lang: Locale; d: Dictionary; page: PageKey }) {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,7 @@ export function Header({ lang, d, page }: { lang: Locale; d: Dictionary; page: P
               </div>
             )}
           </div>
-          <Link href="/login" className="hidden sm:inline-flex h-9 items-center px-3 rounded-lg text-sm font-semibold text-muted hover:text-ink">{d.nav.login}</Link>
+          {appAvailable && <a href={appUrl("/login")} className="hidden sm:inline-flex h-9 items-center px-3 rounded-lg text-sm font-semibold text-muted hover:text-ink">{d.nav.login}</a>}
           <Link href={href(lang, "contact")} className="h-9 inline-flex items-center px-4 rounded-lg text-sm font-bold text-ink" style={{ background: "var(--green)" }}>{d.nav.cta}</Link>
           <button onClick={() => setOpen((v) => !v)} className="xl:hidden h-9 w-9 inline-flex items-center justify-center rounded-lg border border-line bg-surface" aria-label="Menu" aria-expanded={open}>
             <span className="block w-4 h-0.5 bg-ink relative before:absolute before:w-4 before:h-0.5 before:bg-ink before:-top-1.5 after:absolute after:w-4 after:h-0.5 after:bg-ink after:top-1.5" />
@@ -40,7 +41,7 @@ export function Header({ lang, d, page }: { lang: Locale; d: Dictionary; page: P
         <nav className="xl:hidden border-t border-line bg-bg px-5 py-3 grid gap-1 text-base font-semibold">
           {items.map(([k, label]) => <Link key={k} href={href(lang, k)} className="px-3 py-2 rounded-lg hover:bg-surface" onClick={() => setOpen(false)}>{label}</Link>)}
           <Link href={href(lang, "about")} className="px-3 py-2 rounded-lg hover:bg-surface" onClick={() => setOpen(false)}>{d.nav.about}</Link>
-          <Link href="/login" className="px-3 py-2 rounded-lg text-muted" onClick={() => setOpen(false)}>{d.nav.login}</Link>
+          {appAvailable && <a href={appUrl("/login")} className="px-3 py-2 rounded-lg text-muted">{d.nav.login}</a>}
         </nav>
       )}
     </header>
