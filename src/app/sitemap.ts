@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import type { MetadataRoute } from "next";
 import { locales, getDictionary, href, type PageKey } from "@/i18n";
 import { site } from "@/config/site";
