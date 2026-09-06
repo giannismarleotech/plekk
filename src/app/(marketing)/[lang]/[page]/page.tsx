@@ -7,6 +7,7 @@ import { AgendaMock, ReservationsMock, KitchenMock, TodayMock, HeroMock } from "
 import { PricingTable } from "@/components/marketing/Pricing";
 import { ContactForm } from "@/components/marketing/ContactForm";
 import { Mark } from "@/components/Logo";
+import { appUrl, appAvailable } from "@/config/app-url";
 
 export function generateStaticParams() { return allPageParams(); }
 
@@ -110,7 +111,7 @@ function Segment({ lang, d, page }: P) {
             <Lede className="text-xl">{s.lede}</Lede>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={href(lang, "contact")} className="btn font-bold text-ink px-6 py-3" style={{ background: "var(--green)" }}>{d.common.getStarted}</Link>
-              <Link href={`/z/${demo.slug}`} className="btn border border-line bg-surface hover:bg-bg px-6 py-3">{demo.cta} →</Link>
+              <a href={appUrl(`/z/${demo.slug}`, href(lang, "examples"))} className="btn border border-line bg-surface hover:bg-bg px-6 py-3">{demo.cta} →</a>
             </div>
           </div>
           <div className="hidden lg:block">{key === "salons" ? <AgendaMock m={d.mock} /> : key === "restaurants" ? <ReservationsMock m={d.mock} /> : <KitchenMock m={d.mock} />}</div>
@@ -150,7 +151,7 @@ function Segment({ lang, d, page }: P) {
           </table>
         </div>
       </Section>
-      <Cta title={s.ctaTitle} body={s.ctaBody} primary={{ label: d.common.getStarted, href: href(lang, "contact") }} secondary={{ label: demo.cta, href: `/z/${demo.slug}` }} />
+      <Cta title={s.ctaTitle} body={s.ctaBody} primary={{ label: d.common.getStarted, href: href(lang, "contact") }} secondary={{ label: demo.cta, href: appUrl(`/z/${demo.slug}`, href(lang, "examples")) }} />
     </>
   );
 }
@@ -217,7 +218,7 @@ function Examples({ lang, d }: P) {
           {e.demos.map((x) => (
             <div key={x.key} className="card overflow-hidden flex flex-col">
               <div className="p-6 text-white" style={{ background: brand[x.key] }}><p className="text-[10px] font-mono uppercase tracking-widest opacity-80">{x.slug}.plekk.be</p><p className="text-2xl font-bold font-display">{x.name}</p></div>
-              <div className="p-6 flex-1 flex flex-col"><p className="text-muted flex-1">{x.body}</p><Link href={`/z/${x.slug}`} className="mt-5 btn font-bold text-white" style={{ background: brand[x.key] }}>{x.cta} →</Link></div>
+              <div className="p-6 flex-1 flex flex-col"><p className="text-muted flex-1">{x.body}</p><a href={appUrl(`/z/${x.slug}`, href(lang, "contact"))} className="mt-5 btn font-bold text-white" style={{ background: brand[x.key] }}>{x.cta} →</a></div>
             </div>
           ))}
         </div>
@@ -237,14 +238,14 @@ function Examples({ lang, d }: P) {
             <p className="mt-4 text-lg text-[#C9D1CB] max-w-xl">{d.demo.dashboardBody}</p>
             <div className="mt-8 grid gap-3">
               {e.demos.map((x) => (
-                <a key={x.key} href={`/api/demo/login?next=/app/${x.slug}`} className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-4 hover:bg-white/[0.08] transition">
+                <a key={x.key} href={appUrl(`/api/demo/login?next=/app/${x.slug}`, href(lang, "contact"))} className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-4 hover:bg-white/[0.08] transition">
                   <Mark size={32} tile={brand[x.key]} id={`dash-${x.key}`} />
                   <span className="flex-1"><span className="font-bold block">{x.name}</span><span className="text-sm text-[#9AA69E] font-mono">/app/{x.slug}</span></span>
                   <span className="font-bold whitespace-nowrap" style={{ color: "var(--green)" }}>{d.demo.openDashboard} →</span>
                 </a>
               ))}
             </div>
-            <p className="mt-4 text-xs text-[#9AA69E]">demo@plekk.be · plekk1234 · <Link href="/login" className="underline">/login</Link></p>
+            {appAvailable ? <p className="mt-4 text-xs text-[#9AA69E]">demo@plekk.be · plekk1234 · <a href={appUrl("/login")} className="underline">/login</a></p> : <p className="mt-4 text-sm rounded-lg border border-white/15 p-3 text-[#C9D1CB]" id="demo-offline">De live demo komt binnenkort online. Wil je hem nu al zien? <Link href={href(lang, "contact")} className="underline text-white">Vraag een demo aan</Link> en we tonen hem ter plaatse of via video.</p>}
           </div>
           <div>
             <h3 className="text-2xl font-bold">{d.demo.tryTitle}</h3>
