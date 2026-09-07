@@ -156,7 +156,7 @@ export function BookingFlow({ org, resources, offerings, t }: { org: Org; resour
 
 function Step({ n, title, children, muted }: { n: number; title: string; children: React.ReactNode; muted?: boolean }) {
   return (
-    <section className={`card p-5 ${muted ? "opacity-60" : ""}`}>
+    <section className={`card p-5 min-w-0 ${muted ? "opacity-60" : ""}`}>
       <h3 className="font-bold text-lg mb-3"><span className="font-mono text-xs text-muted mr-2">{n}</span>{title}</h3>
       {children}
     </section>
