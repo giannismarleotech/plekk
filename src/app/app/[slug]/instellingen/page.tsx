@@ -3,6 +3,7 @@ import { weekdayNames } from "@/lib/format";
 import { updateSettings } from "../actions";
 import { PasswordForm } from "@/components/dashboard/PasswordForm";
 import { site } from "@/config/site";
+import { publicUrl } from "@/lib/bookings";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,7 @@ export default async function SettingsPage({ params }: PageProps<"/app/[slug]/in
   const order = [1, 2, 3, 4, 5, 6, 0];
   return (<>
     <form action={action} className="space-y-8 max-w-3xl">
-      <h1 className="text-2xl font-bold">Instellingen</h1>
+      <div><h1 className="text-2xl font-bold">Instellingen</h1><p className="text-sm text-muted mt-1">Alles wat je hier wijzigt, staat meteen op je boekingspagina. Klik onderaan op Opslaan.</p></div>
 
       <section className="card p-5 grid gap-3 sm:grid-cols-2 text-sm">
         <p className="sm:col-span-2 font-bold text-base">Zaak</p>
@@ -53,6 +54,7 @@ export default async function SettingsPage({ params }: PageProps<"/app/[slug]/in
         <F label="Minimum vooraf (min)"><input name="leadTimeMin" type="number" min={0} defaultValue={s.leadTimeMin} className="input" /></F>
         <F label="Hoe ver vooruit (dagen)"><input name="horizonDays" type="number" min={1} defaultValue={s.horizonDays} className="input" /></F>
         <F label="Zelf annuleren tot (uur vooraf)"><input name="cancelHoursBefore" type="number" min={0} defaultValue={s.cancelHoursBefore} className="input" /></F>
+        <label className="flex items-center gap-2 sm:col-span-2"><input type="checkbox" name="ownerNotifications" defaultChecked={s.ownerNotifications !== false} /> Mail naar {org.email || "het e-mailadres van de zaak"} bij elke nieuwe boeking</label>
         {org.mode === "restaurant" && (<>
           <F label="Max. nieuwe couverts per slot (pacing)"><input name="maxCoversPerSlot" type="number" min={1} defaultValue={s.maxCoversPerSlot ?? 12} className="input" /></F>
           <F label="Waarborg vanaf (personen)"><input name="depositFromPartySize" type="number" min={1} defaultValue={s.depositFromPartySize ?? ""} className="input" /></F>
@@ -71,9 +73,8 @@ export default async function SettingsPage({ params }: PageProps<"/app/[slug]/in
       <p className="font-bold text-base mb-2">Je links</p>
       <p className="text-muted">Zet deze op je Google Bedrijfsprofiel, Instagram, Facebook en je website.</p>
       <dl className="mt-3 grid gap-2 sm:grid-cols-[10rem_1fr]">
-        <dt className="text-muted">Boekingspagina</dt><dd className="font-mono break-all">{`https://${slug}.${site.domain}`}</dd>
-        <dt className="text-muted">Zonder subdomein</dt><dd className="font-mono break-all">{`https://${site.domain}/z/${slug}`}</dd>
-        <dt className="text-muted">Knop op je site</dt><dd><code className="font-mono text-xs block bg-bg border border-line rounded p-2 overflow-x-auto">{`<a href="https://${slug}.${site.domain}" style="background:${org.brandColor};color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none">${org.mode === "salon" ? "Boek nu" : org.mode === "restaurant" ? "Reserveer" : "Bestel online"}</a>`}</code></dd>
+        <dt className="text-muted">Boekingspagina</dt><dd className="font-mono break-all"><a href={publicUrl(slug)} target="_blank" className="underline">{publicUrl(slug)}</a></dd>
+        <dt className="text-muted">Knop op je site</dt><dd><code className="font-mono text-xs block bg-bg border border-line rounded p-2 overflow-x-auto">{`<a href="${publicUrl(slug)}" style="background:${org.brandColor};color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none">${org.mode === "salon" ? "Boek nu" : org.mode === "restaurant" ? "Reserveer" : "Bestel online"}</a>`}</code></dd>
         <dt className="text-muted">Widget (pop-up)</dt><dd><code className="font-mono text-xs block bg-bg border border-line rounded p-2 overflow-x-auto">{`<script src="https://${site.domain}/widget.js" data-org="${slug}" data-color="${org.brandColor}"></script>`}</code></dd>
         <dt className="text-muted">QR-code</dt><dd><a className="underline" href={`/api/qr?slug=${slug}`} target="_blank">Download QR (SVG)</a> — voor op de toog, de deur of je kaart.</dd>
       </dl>
