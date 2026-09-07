@@ -2,6 +2,7 @@ import { requireOrgAccess } from "@/lib/auth";
 import { weekdayNames } from "@/lib/format";
 import { updateSettings } from "../actions";
 import { PasswordForm } from "@/components/dashboard/PasswordForm";
+import { SubmitButton } from "@/components/dashboard/SubmitButton";
 import { site } from "@/config/site";
 import { publicUrl } from "@/lib/bookings";
 
@@ -31,17 +32,18 @@ export default async function SettingsPage({ params }: PageProps<"/app/[slug]/in
       </section>
 
       <section className="card p-5 text-sm">
-        <p className="font-bold text-base mb-3">Openingsuren <span className="font-normal text-muted">(leeg = gesloten; tweede blok voor middagpauze)</span></p>
-        <div className="grid gap-2">
+        <p className="font-bold text-base">Openingsuren</p>
+        <p className="text-muted mb-3">Per dag een blok “van – tot”. Middagpauze? Vul dan ook het tweede blok in. Gesloten dag: alles leeg laten.</p>
+        <div className="grid gap-3">
           {order.map((d) => {
             const b = org.openingHours[String(d)] ?? [];
             return (
-              <div key={d} className="grid grid-cols-[6rem_repeat(4,1fr)] gap-2 items-center">
-                <span className="font-semibold">{weekdayNames[d]}</span>
-                <input name={`d${d}_open1`} defaultValue={b[0]?.open ?? ""} placeholder="09:00" className="input py-1.5 font-mono" />
-                <input name={`d${d}_close1`} defaultValue={b[0]?.close ?? ""} placeholder="12:00" className="input py-1.5 font-mono" />
-                <input name={`d${d}_open2`} defaultValue={b[1]?.open ?? ""} placeholder="13:00" className="input py-1.5 font-mono" />
-                <input name={`d${d}_close2`} defaultValue={b[1]?.close ?? ""} placeholder="18:00" className="input py-1.5 font-mono" />
+              <div key={d} className="grid gap-2 sm:grid-cols-[6rem_1fr] items-center border-b border-line pb-3 last:border-0 last:pb-0">
+                <span className="font-semibold">{weekdayNames[d]}{!b.length && <span className="ml-2 text-xs font-normal text-muted">gesloten</span>}</span>
+                <div className="flex flex-wrap gap-x-4 gap-y-2">
+                  <span className="inline-flex items-center gap-1.5"><input name={`d${d}_open1`} type="time" defaultValue={b[0]?.open ?? ""} className="input py-1.5 w-[7.5rem] font-mono" aria-label="Open" /><span className="text-muted">–</span><input name={`d${d}_close1`} type="time" defaultValue={b[0]?.close ?? ""} className="input py-1.5 w-[7.5rem] font-mono" aria-label="Dicht" /></span>
+                  <span className="inline-flex items-center gap-1.5"><input name={`d${d}_open2`} type="time" defaultValue={b[1]?.open ?? ""} className="input py-1.5 w-[7.5rem] font-mono" aria-label="Open (2e blok)" /><span className="text-muted">–</span><input name={`d${d}_close2`} type="time" defaultValue={b[1]?.close ?? ""} className="input py-1.5 w-[7.5rem] font-mono" aria-label="Dicht (2e blok)" /></span>
+                </div>
               </div>
             );
           })}
@@ -67,7 +69,7 @@ export default async function SettingsPage({ params }: PageProps<"/app/[slug]/in
         </>)}
       </section>
 
-      <button className="btn-brand">Opslaan</button>
+      <div className="sticky bottom-0 -mx-5 md:-mx-8 px-5 md:px-8 py-3 bg-surface/95 backdrop-blur border-t border-line"><SubmitButton className="btn-brand text-white">Instellingen opslaan</SubmitButton></div>
     </form>
     <section className="card p-5 text-sm max-w-3xl mt-8">
       <p className="font-bold text-base mb-2">Je links</p>
