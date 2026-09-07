@@ -27,7 +27,7 @@ await p.click('button:has-text("Opslaan")');
 await p.waitForTimeout(800);
 // add service
 await p.goto(`${BASE}/app/${slug}/aanbod`);
-await p.click('summary:has-text("+ Toevoegen")');
+await p.click('summary:has-text("+ Dienst toevoegen")');
 const form = p.locator('form').filter({ has: p.locator('button:has-text("Toevoegen")') }).first();
 await form.locator('input[name=name]').fill("Knippen heren");
 await form.locator('input[name=category]').fill("Knippen");

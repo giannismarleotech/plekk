@@ -1,0 +1,33 @@
+import { chromium } from "playwright";
+const BASE = process.env.BASE ?? "http://localhost:3600";
+const out = process.env.OUT ?? "/tmp/audit";
+const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+for (const [name, vp] of [["d", { width: 1366, height: 900 }], ["m", { width: 390, height: 844 }]]) {
+  const ctx = await b.newContext({ viewport: vp, deviceScaleFactor: 1 });
+  const p = await ctx.newPage();
+  await p.route(/fonts\.googleapis\.com|fonts\.gstatic\.com/, (r) => r.abort());
+  const shot = async (path, file) => { await p.goto(BASE + path, { waitUntil: "load" }); await p.waitForTimeout(1200); await p.screenshot({ path: `${out}/${file}-${name}.png`, fullPage: true }); };
+  await shot("/registreren", "01-registreren");
+  await shot("/login", "02-login");
+  await shot("/z/kapsalon-lien", "03-pub-salon");
+  await shot("/z/bistro-de-leie", "04-pub-resto");
+  await shot("/z/frituur-t-hoekske", "05-pub-frituur");
+  await p.goto(BASE + "/api/demo/login?next=/app/kapsalon-lien");
+  await shot("/app/kapsalon-lien", "10-vandaag");
+  await shot("/app/kapsalon-lien/agenda", "11-agenda");
+  await shot("/app/kapsalon-lien/klanten", "12-klanten");
+  await shot("/app/kapsalon-lien/rapporten", "13-rapporten");
+  await shot("/app/kapsalon-lien/aanbod", "14-aanbod-salon");
+  await shot("/app/kapsalon-lien/instellingen", "15-instellingen");
+  await shot("/app/bistro-de-leie/aanbod", "16-aanbod-resto");
+  await shot("/app/frituur-t-hoekske/aanbod", "17-aanbod-frituur");
+  await shot("/app/frituur-t-hoekske/keuken", "18-keuken");
+  await shot("/app/frituur-t-hoekske/agenda", "19-bestellingen");
+  await shot("/app", "20-zaken");
+  await shot("/admin", "21-admin");
+  await shot("/app/kapsalon-lien/start", "22-start-demo");
+  await shot("/z/bestaat-niet", "30-404");
+  await ctx.close();
+}
+await b.close();
+console.log("done");

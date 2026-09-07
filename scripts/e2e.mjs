@@ -71,7 +71,7 @@ await page.screenshot({ path: `${shots}/06-takeaway-confirmed.png`, fullPage: tr
 
 // 5. Dashboard
 await page.goto(BASE + "/login");
-await page.fill("#password", "plekk1234");
+await page.fill("#email", "demo@plekk.be"); await page.fill("#password", "plekk1234");
 await page.getByRole("button", { name: "Inloggen" }).click();
 await page.waitForURL(/\/app/);
 await page.goto(BASE + "/app/kapsalon-lien/agenda");
