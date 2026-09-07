@@ -18,6 +18,7 @@ export type OrgSettings = {
   prepMinutes?: number;
   maxOrdersPerSlot?: number;
   prepayRequired?: boolean;
+  ownerNotifications?: boolean; // mail naar de zaak bij elke nieuwe boeking (standaard aan)
 };
 
 export const organisations = pgTable("organisations", {
