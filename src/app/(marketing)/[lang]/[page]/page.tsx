@@ -89,7 +89,7 @@ function How({ lang, d }: P) {
         <Grid cols={2}>{h.tech.map((x) => <Feature key={x.title} title={x.title} body={x.body} />)}</Grid>
       </Section>
       <Section><Faq title={h.faqTitle} items={h.faq} /></Section>
-      <Cta title={d.home.ctaTitle} body={d.home.ctaBody} primary={{ label: d.common.getStarted, href: href(lang, "contact") }} secondary={{ label: d.common.seeDemo, href: href(lang, "examples") }} />
+      <Cta title={d.home.ctaTitle} body={d.home.ctaBody} primary={{ label: d.common.getStarted, href: appUrl("/registreren", href(lang, "contact")) }} secondary={{ label: d.common.seeDemo, href: href(lang, "examples") }} />
     </>
   );
 }
@@ -110,7 +110,7 @@ function Segment({ lang, d, page }: P) {
             <h1 className="text-4xl md:text-6xl font-bold leading-[1.02]" style={{ textWrap: "balance" }}>{s.title}</h1>
             <Lede className="text-xl">{s.lede}</Lede>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={href(lang, "contact")} className="btn font-bold text-ink px-6 py-3" style={{ background: "var(--green)" }}>{d.common.getStarted}</Link>
+              <a href={appUrl("/registreren", href(lang, "contact"))} className="btn font-bold text-ink px-6 py-3" style={{ background: "var(--green)" }}>{d.common.getStarted}</a>
               <a href={appUrl(`/z/${demo.slug}`, href(lang, "examples"))} className="btn border border-line bg-surface hover:bg-bg px-6 py-3">{demo.cta} →</a>
             </div>
           </div>
@@ -151,7 +151,7 @@ function Segment({ lang, d, page }: P) {
           </table>
         </div>
       </Section>
-      <Cta title={s.ctaTitle} body={s.ctaBody} primary={{ label: d.common.getStarted, href: href(lang, "contact") }} secondary={{ label: demo.cta, href: appUrl(`/z/${demo.slug}`, href(lang, "examples")) }} />
+      <Cta title={s.ctaTitle} body={s.ctaBody} primary={{ label: d.common.getStarted, href: appUrl("/registreren", href(lang, "contact")) }} secondary={{ label: demo.cta, href: appUrl(`/z/${demo.slug}`, href(lang, "examples")) }} />
     </>
   );
 }
@@ -201,7 +201,7 @@ function Pricing({ lang, d }: P) {
         </div>
       </Section>
       <Section className="bg-surface border-y border-line"><Faq title={p.faqTitle} items={p.faq} /></Section>
-      <Cta title={d.home.ctaTitle} body={d.home.ctaBody} primary={{ label: d.common.getStarted, href: href(lang, "contact") }} />
+      <Cta title={d.home.ctaTitle} body={d.home.ctaBody} primary={{ label: d.common.getStarted, href: appUrl("/registreren", href(lang, "contact")) }} />
     </>
   );
 }
@@ -260,7 +260,7 @@ function Examples({ lang, d }: P) {
         <Lede>{e.embedBody}</Lede>
         <pre className="mt-6 rounded-2xl bg-[#101814] text-[#C9F7DA] p-5 text-sm overflow-x-auto font-mono"><code>{`<a href="https://kapsalon-lien.plekk.be" class="plekk-button">${d.common.bookNow}</a>\n<script src="https://plekk.be/widget.js" data-org="kapsalon-lien"></script>`}</code></pre>
       </Section>
-      <Cta title={d.home.ctaTitle} body={d.home.ctaBody} primary={{ label: d.common.getStarted, href: href(lang, "contact") }} />
+      <Cta title={d.home.ctaTitle} body={d.home.ctaBody} primary={{ label: d.common.getStarted, href: appUrl("/registreren", href(lang, "contact")) }} />
     </>
   );
 }
