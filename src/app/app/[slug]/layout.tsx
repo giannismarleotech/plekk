@@ -34,7 +34,7 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
     <div className="flex-1 flex flex-col" style={{ ["--brand" as string]: org.brandColor }}>
       {demoOrgs && <DemoBanner variant="dashboard" switcher={demoOrgs} />}
     <div className="flex-1 grid md:grid-cols-[230px_1fr]">
-      <aside className="border-b md:border-b-0 md:border-r border-line bg-surface p-4 flex md:flex-col gap-3 md:gap-1 items-center md:items-stretch overflow-x-auto">
+      <aside className="border-b md:border-b-0 md:border-r border-line bg-surface p-4 flex flex-wrap md:flex-col gap-2 md:gap-1 items-center md:items-stretch">
         <Link href={user.isPlatformAdmin ? "/admin" : "/app"} className="mr-3 md:mr-0 md:mb-2" aria-label={site.name}><Logo size={22} /></Link>
         <div className="hidden md:block mb-3">
           <p className="text-xs font-mono uppercase tracking-wider text-muted">{modeLabels[org.mode].verb}</p>
