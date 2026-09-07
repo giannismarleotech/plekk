@@ -16,11 +16,11 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
       <form action={login} className="card p-6 w-full max-w-sm space-y-4">
         <Link href="/" aria-label={site.name}><Logo size={26} /></Link>
         <h1 className="text-xl font-bold">Inloggen op je dashboard</h1>
-        <div><label className="label" htmlFor="email">E-mail</label><input id="email" name="email" type="email" className="input" required autoComplete="email" defaultValue="demo@plekk.be" /></div>
+        <div><label className="label" htmlFor="email">E-mail</label><input id="email" name="email" type="email" className="input" required autoComplete="email" /></div>
         <div><label className="label" htmlFor="password">Wachtwoord</label><input id="password" name="password" type="password" className="input" required autoComplete="current-password" /></div>
         {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
         <button className="btn-brand w-full">Inloggen</button>
-        <p className="text-xs text-muted">Demo: demo@plekk.be / plekk1234</p>
+        <p className="text-xs text-muted text-center">Nog geen account? <Link href="/registreren" className="underline font-semibold">Gratis starten</Link> · <Link href="/api/demo/login" className="underline">Bekijk de demo</Link></p>
       </form>
     </main>
   );
