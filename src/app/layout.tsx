@@ -6,9 +6,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
   title: { default: `${site.name} — ${site.tagline}`, template: `%s · ${site.name}` },
   description: "Boeken, reserveren en bestellen voor lokale zaken. Geen commissie, ooit.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Plekk" },
   icons: { icon: [{ url: "/favicon.svg", type: "image/svg+xml" }, { url: "/brand/favicon-64.svg", sizes: "64x64", type: "image/svg+xml" }], apple: "/brand/app-icon.png" },
   openGraph: { title: `${site.name} — ${site.tagline}`, description: "Boeken, reserveren en bestellen voor lokale zaken. Geen commissie, ooit.", images: ["/brand/og.png"], locale: "nl_BE", type: "website" },
 };
+
+export const viewport = { themeColor: "#1ED760" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
