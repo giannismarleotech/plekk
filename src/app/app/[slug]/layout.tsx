@@ -6,6 +6,7 @@ import { site, modeLabels } from "@/config/site";
 import { logout } from "@/app/login/actions";
 import { DemoBanner } from "@/components/DemoBanner";
 import { orgsForUser } from "@/lib/auth";
+import { InstallApp } from "@/components/dashboard/InstallApp";
 
 export const dynamic = "force-dynamic";
 
@@ -39,6 +40,7 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
         ))}
         <div className="md:mt-auto md:pt-4 md:border-t md:border-line flex md:flex-col gap-3 text-sm ml-auto md:ml-0">
           <Link href={`/z/${slug}`} target="_blank" className="underline whitespace-nowrap">Publieke pagina ↗</Link>
+          <InstallApp />
           <form action={logout}><button className="text-muted hover:underline whitespace-nowrap">Uitloggen ({user.name.split(" ")[0]})</button></form>
         </div>
       </aside>
