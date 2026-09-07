@@ -3,6 +3,7 @@ import { requireOrgAccess } from "@/lib/auth";
 import { getDb, schema } from "@/db";
 import { euro, minutesLabel } from "@/lib/format";
 import { formatOptions } from "@/lib/options-text";
+import { SubmitButton } from "@/components/dashboard/SubmitButton";
 import { addResource, addOffering, toggleResource, toggleOffering, updateOffering, deleteOffering, updateResource, deleteResource } from "../actions";
 
 export const dynamic = "force-dynamic";
@@ -40,6 +41,7 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
       <section className="space-y-3">
         <div><h1 className="text-2xl font-bold">{offLabel}</h1><p className="text-sm text-muted mt-1">{m === "salon" ? "Elke behandeling met duur en prijs. Klik op een dienst om ze aan te passen; 'Verberg' haalt ze tijdelijk van je pagina." : m === "restaurant" ? "Shifts zijn de blokken waarin klanten kunnen reserveren (bv. lunch en diner). Tafels staan rechts." : "Alles wat klanten kunnen bestellen, met prijs en opties. Klik op een product om het aan te passen."}</p></div>
         <div className="card divide-y divide-line">
+          {offerings.length === 0 && <p className="px-4 py-6 text-sm text-muted">Nog niets toegevoegd. {m === "salon" ? "Voeg je eerste behandeling toe met naam, duur en prijs." : m === "restaurant" ? "Voeg een shift toe, bv. Lunch 12:00–14:30." : "Voeg je eerste product toe, bv. Grote friet € 3,50."}</p>}
           {offerings.map((o) => (
             <details key={o.id} className={`group ${o.active ? "" : "opacity-50"}`}>
               <summary className="flex items-center gap-3 px-4 py-2.5 cursor-pointer list-none">
@@ -48,7 +50,7 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
                 <span className="text-xs text-muted group-open:rotate-90 transition">▶</span>
               </summary>
               <div className="px-4 pb-4 bg-bg border-t border-line">
-                <form action={updateOffering.bind(null, slug, o.id)} className="grid gap-2 sm:grid-cols-2 text-sm pt-3"><OfferingFields o={o} /><div className="sm:col-span-2 flex gap-3 items-center"><button className="btn-brand text-white text-sm">Opslaan</button></div></form>
+                <form action={updateOffering.bind(null, slug, o.id)} className="grid gap-2 sm:grid-cols-2 text-sm pt-3"><OfferingFields o={o} /><div className="sm:col-span-2 flex gap-3 items-center"><SubmitButton className="btn-brand text-white text-sm">Opslaan</SubmitButton></div></form>
                 <div className="flex gap-3 mt-2 text-xs">
                   <form action={toggleOffering.bind(null, slug, o.id, !o.active)}><button className="underline text-muted">{o.active ? "Verberg voor klanten" : "Terug zichtbaar maken"}</button></form>
                   <form action={deleteOffering.bind(null, slug, o.id)}><button className="underline text-red-700">Verwijder</button></form>
@@ -57,8 +59,8 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
             </details>
           ))}
         </div>
-        <details className="card"><summary className="px-4 py-3 font-bold cursor-pointer list-none">+ Toevoegen</summary>
-          <form action={addOffering.bind(null, slug)} className="grid gap-2 sm:grid-cols-2 text-sm px-4 pb-4"><OfferingFields /><div className="sm:col-span-2"><button className="btn-brand text-white text-sm">Toevoegen</button></div></form>
+        <details className="card"><summary className="px-4 py-3 font-bold cursor-pointer list-none" style={{ color: "var(--brand)" }}>+ {m === "salon" ? "Dienst" : m === "restaurant" ? "Shift" : "Product"} toevoegen</summary>
+          <form action={addOffering.bind(null, slug)} className="grid gap-2 sm:grid-cols-2 text-sm px-4 pb-4"><OfferingFields /><div className="sm:col-span-2"><SubmitButton className="btn-brand text-white text-sm" savedLabel="Toegevoegd ✓">Toevoegen</SubmitButton></div></form>
         </details>
       </section>
 
@@ -78,7 +80,7 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
                   {r.kind !== "staff" && <label className="block"><span className="label">{r.kind === "table" ? "Zitplaatsen" : "Bestellingen per slot"}</span><input name="capacity" type="number" min={1} defaultValue={r.capacity} className="input" /></label>}
                   {r.kind === "table" && <label className="block"><span className="label">Min. personen</span><input name="minParty" type="number" min={1} defaultValue={r.minParty} className="input" /></label>}
                   <label className="block"><span className="label">Volgorde</span><input name="sortOrder" type="number" defaultValue={r.sortOrder} className="input" /></label>
-                  <div className="sm:col-span-3"><button className="btn-brand text-white text-sm">Opslaan</button></div>
+                  <div className="sm:col-span-3"><SubmitButton className="btn-brand text-white text-sm">Opslaan</SubmitButton></div>
                 </form>
                 <div className="flex gap-3 mt-2 text-xs">
                   <form action={toggleResource.bind(null, slug, r.id, !r.active)}><button className="underline text-muted">{r.active ? "Deactiveer" : "Activeer"}</button></form>
@@ -89,11 +91,11 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
           ))}
         </div>
         {org.mode !== "takeaway" && (
-          <details className="card"><summary className="px-4 py-3 font-bold cursor-pointer list-none">+ {org.mode === "salon" ? "Medewerker" : "Tafel"} toevoegen</summary>
+          <details className="card"><summary className="px-4 py-3 font-bold cursor-pointer list-none" style={{ color: "var(--brand)" }}>+ {org.mode === "salon" ? "Medewerker" : "Tafel"} toevoegen</summary>
             <form action={addResource.bind(null, slug)} className="grid gap-2 sm:grid-cols-3 text-sm px-4 pb-4">
               <input name="name" placeholder="Naam" required className="input" />
               {org.mode === "restaurant" && (<><input name="capacity" type="number" min={1} placeholder="Zitplaatsen" className="input" /><input name="minParty" type="number" min={1} placeholder="Min. personen" className="input" /></>)}
-              <div className="sm:col-span-3"><button className="btn-brand text-white text-sm">Toevoegen</button></div>
+              <div className="sm:col-span-3"><SubmitButton className="btn-brand text-white text-sm" savedLabel="Toegevoegd ✓">Toevoegen</SubmitButton></div>
             </form>
           </details>
         )}
