@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? "plekk.be";
 const RESERVED = new Set(["www", "app", "api", "admin", "mail"]);
 const LOCALES = ["nl", "fr", "en", "de"];
-const APP_PREFIXES = ["/z/", "/app", "/admin", "/login", "/api", "/brand", "/favicon"];
+const APP_PREFIXES = ["/z/", "/app", "/admin", "/login", "/registreren", "/api", "/brand", "/favicon", "/manifest", "/sw.js", "/widget"];
 
 function pickLocale(req: NextRequest) {
   const cookie = req.cookies.get("plekk_lang")?.value;
