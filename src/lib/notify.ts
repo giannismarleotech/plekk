@@ -17,7 +17,7 @@ export function confirmationText(b: Full) {
   if (b.kind === "reservation") lines.push(`Je tafel voor ${b.partySize} bij ${b.org.name} is ${b.status === "requested" ? "aangevraagd" : "bevestigd"}: ${when}.`, b.depositCents ? `Waarborg: ${euro(b.depositCents)} (wordt verrekend op de rekening).` : "");
   if (b.kind === "order") lines.push(`Je bestelling bij ${b.org.name} is ontvangen. Afhalen: ${when}.`, ...b.items.map((i) => `• ${i.quantity}× ${i.name}${i.options?.length ? ` (${i.options.map((o) => o.choice).join(", ")})` : ""} — ${euro(i.unitPriceCents * i.quantity)}`), `Totaal: ${euro(b.totalCents)}${b.paymentStatus === "none" ? " — te betalen bij afhaling" : ""}`);
   const t = publicStrings(b.org.locale);
-  const base = process.env.PUBLIC_BASE_URL ?? `https://${site.domain}`;
+  const base = process.env.PUBLIC_BASE_URL ?? process.env.URL ?? `https://${site.domain}`;
   lines.push("", `${t.reference}: ${b.reference}`, `${t.manageBooking}: ${base}/z/${b.org.slug}/bevestigd/${b.reference}`, `${b.org.address ?? ""} ${b.org.city ?? ""}`.trim(), b.org.phone ? `${t.changeOrCancel} ${t.call} ${b.org.phone}` : "", "", `${t.poweredBy} ${site.name}`);
   return lines.filter((l) => l !== undefined).join("\n");
 }
@@ -39,12 +39,24 @@ export async function sendBookingConfirmation(b: Full) {
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
 }
 
+/** Melding aan de zaak zelf bij elke nieuwe boeking (naar het e-mailadres van de zaak, tenzij uitgezet). */
+export async function notifyOwner(b: Full) {
+  const to = b.org.email;
+  if (!to || b.org.settings.ownerNotifications === false) return;
+  const when = fmtDateTime(b.startsAt, "nl");
+  const what = b.kind === "order" ? "Nieuwe bestelling" : b.kind === "reservation" ? "Nieuwe reservatie" : "Nieuwe afspraak";
+  const who = `${b.customer?.name ?? "?"}${b.customer?.phone ? ` · ${b.customer.phone}` : ""}`;
+  const base = process.env.PUBLIC_BASE_URL ?? process.env.URL ?? `https://${site.domain}`;
+  const lines = [`${what} bij ${b.org.name}`, when, who, b.kind === "reservation" ? `${b.partySize} personen` : "", ...b.items.map((i) => `• ${i.quantity}× ${i.name}`), b.totalCents ? `Totaal: ${euro(b.totalCents)}` : "", "", `Bekijk in je dashboard: ${base}/app/${b.org.slug}/agenda`, "", `${site.name}`];
+  await deliver(to, `${what}: ${b.customer?.name ?? b.reference} · ${when}`, lines.filter(Boolean).join("\n"));
+}
+
 export async function sendReminder(b: Full) {
   const to = b.customer?.email;
   if (!to) return;
   const t = publicStrings(b.org.locale);
   const when = fmtDateTime(b.startsAt, b.org.locale);
-  const base = process.env.PUBLIC_BASE_URL ?? `https://${site.domain}`;
+  const base = process.env.PUBLIC_BASE_URL ?? process.env.URL ?? `https://${site.domain}`;
   const intro = { nl: "Herinnering: morgen", fr: "Rappel : demain", en: "Reminder: tomorrow", de: "Erinnerung: morgen" }[b.org.locale] ?? "Herinnering: morgen";
   const subject = `${intro} · ${b.org.name} · ${when}`;
   const text = [`${intro} — ${b.org.name}`, when, b.kind === "reservation" ? `${b.partySize} ${b.partySize === 1 ? t.person : t.people}` : "", "", `${t.manageBooking}: ${base}/z/${b.org.slug}/bevestigd/${b.reference}`, b.org.phone ? `${t.changeOrCancel} ${t.call} ${b.org.phone}` : "", "", `${t.poweredBy} ${site.name}`].join("\n");

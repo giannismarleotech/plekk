@@ -153,8 +153,8 @@ export async function createBooking(args: {
       if (pay) { checkoutUrl = pay.checkoutUrl; await db.update(schema.bookings).set({ paymentRef: pay.id }).where(eq(schema.bookings.id, bid)); }
     } catch (e) { console.error("[mollie]", e); }
   }
-  const { sendBookingConfirmation } = await import("./notify");
-  if (booking) void sendBookingConfirmation(booking).catch((e) => console.error("[notify]", e));
+  const { sendBookingConfirmation, notifyOwner } = await import("./notify");
+  if (booking) { void sendBookingConfirmation(booking).catch((e) => console.error("[notify]", e)); void notifyOwner(booking).catch((e) => console.error("[notify owner]", e)); }
   return { id: bid, reference: ref, checkoutUrl };
 }
 
@@ -175,7 +175,8 @@ export async function recentCustomers(orgId: string) {
   return db.query.customers.findMany({ where: eq(schema.customers.orgId, orgId), orderBy: desc(schema.customers.createdAt), with: { bookings: { orderBy: desc(schema.bookings.startsAt), limit: 5 } } });
 }
 
-export const publicUrl = (slug: string) => process.env.NODE_ENV === "production" ? `https://${slug}.${site.domain}` : `/z/${slug}`;
+/** Publieke link van een zaak. Zolang het eigen domein (met wildcard-subdomeinen) niet gekoppeld is: SUBDOMAINS_READY leeg laten → /z/slug op de huidige host. */
+export const publicUrl = (slug: string) => process.env.SUBDOMAINS_READY === "1" ? `https://${slug}.${site.domain}` : `${(process.env.PUBLIC_BASE_URL ?? process.env.URL ?? "").replace(/\/$/, "")}/z/${slug}`;
 
 /** Basis-URL van deze deploy: env PUBLIC_BASE_URL, anders afgeleid van de request. */
 export async function getBaseUrl() {
