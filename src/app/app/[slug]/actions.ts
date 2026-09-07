@@ -90,6 +90,7 @@ export async function updateSettings(slug: string, form: FormData) {
       prepMinutes: org.mode === "takeaway" ? num("prepMinutes", s.prepMinutes ?? 20) : s.prepMinutes,
       maxOrdersPerSlot: org.mode === "takeaway" ? num("maxOrdersPerSlot", s.maxOrdersPerSlot ?? 6) : s.maxOrdersPerSlot,
       prepayRequired: org.mode === "takeaway" ? form.get("prepayRequired") === "on" : s.prepayRequired,
+      ownerNotifications: form.get("ownerNotifications") === "on",
     },
   }).where(eq(schema.organisations.id, org.id));
   revalidatePath(`/app/${slug}`, "layout");

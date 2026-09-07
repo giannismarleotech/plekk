@@ -3,7 +3,6 @@ import { requireOrgAccess } from "@/lib/auth";
 import { bookingsOnDay, publicUrl } from "@/lib/bookings";
 import { euro, fmtTime, isoDay } from "@/lib/format";
 import { StatusPill, StatusButtons } from "@/components/dashboard/StatusButtons";
-import { site } from "@/config/site";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +17,7 @@ export default async function TodayPage({ params }: PageProps<"/app/[slug]">) {
   const open = active.filter((b) => ["requested", "confirmed", "new", "preparing", "ready"].includes(b.status));
   const now = new Date();
   const next = open.filter((b) => b.startsAt >= now).slice(0, 5);
-  const link = process.env.NODE_ENV === "production" ? publicUrl(slug) : `${slug}.localhost:3000`;
+  const link = publicUrl(slug);
 
   const stat = org.mode === "salon" ? ["Afspraken vandaag", String(active.length)] : org.mode === "restaurant" ? ["Couverts vandaag", String(covers)] : ["Bestellingen vandaag", String(active.length)];
 
@@ -60,8 +59,8 @@ export default async function TodayPage({ params }: PageProps<"/app/[slug]">) {
       <section className="card p-4 text-sm">
         <h2 className="font-bold mb-1">Jouw publieke pagina</h2>
         <p className="text-muted">Zet deze link op je Google Bedrijfsprofiel, Instagram en je website. Wij drukken ook de QR- of NFC-kaart voor op de toog.</p>
-        <p className="mt-2 font-mono break-all"><Link href={`/z/${slug}`} target="_blank" className="underline">{link}</Link></p>
-        <p className="mt-2 text-xs text-muted">In productie: {slug}.{site.domain}</p>
+        <p className="mt-2 font-mono break-all"><a href={link} target="_blank" className="underline">{link}</a></p>
+        <p className="mt-2 text-xs text-muted">Nog niet alles ingesteld? <Link href={`/app/${slug}/start`} className="underline">Open het stappenplan</Link>.</p>
       </section>
     </div>
   );

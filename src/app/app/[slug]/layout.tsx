@@ -7,6 +7,7 @@ import { logout } from "@/app/login/actions";
 import { DemoBanner } from "@/components/DemoBanner";
 import { orgsForUser } from "@/lib/auth";
 import { InstallApp } from "@/components/dashboard/InstallApp";
+import { onboardingSteps } from "@/lib/onboarding";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,10 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
   if (!access) redirect("/login");
   const { org, user } = access;
   const demoOrgs = org.plan === "demo" ? (await orgsForUser(user.id, user.isPlatformAdmin)).filter((o) => o.plan === "demo").map((o) => ({ slug: o.slug, name: o.name })) : null;
+  const steps = org.plan === "demo" ? [] : await onboardingSteps(org);
+  const todo = steps.filter((x) => !x.done).length;
   const nav = [
+    ...(steps.length && todo ? [["/start", `Aan de slag (${todo})`]] : []),
     ["", "Vandaag"],
     ["/agenda", org.mode === "takeaway" ? "Bestellingen" : "Agenda"],
     ...(org.mode === "takeaway" ? [["/keuken", "Keukenscherm"]] : []),
@@ -24,6 +28,7 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
     ["/rapporten", "Rapporten"],
     ["/aanbod", org.mode === "salon" ? "Diensten & team" : org.mode === "restaurant" ? "Tafels & shifts" : "Menu"],
     ["/instellingen", "Instellingen"],
+    ...(steps.length && !todo ? [["/start", "Stappenplan"]] : []),
   ];
   return (
     <div className="flex-1 flex flex-col" style={{ ["--brand" as string]: org.brandColor }}>
@@ -36,7 +41,7 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
           <p className="font-bold leading-tight">{org.name}</p>
         </div>
         {nav.map(([href, label]) => (
-          <Link key={href} href={`/app/${slug}${href}`} className="text-sm font-semibold rounded-lg px-3 py-2 hover:bg-bg whitespace-nowrap">{label}</Link>
+          <Link key={href} href={`/app/${slug}${href}`} className={`text-sm font-semibold rounded-lg px-3 py-2 hover:bg-bg whitespace-nowrap ${href === "/start" && todo ? "text-white" : ""}`} style={href === "/start" && todo ? { background: "var(--brand)" } : undefined}>{label}</Link>
         ))}
         <div className="md:mt-auto md:pt-4 md:border-t md:border-line flex md:flex-col gap-3 text-sm ml-auto md:ml-0">
           <Link href={`/z/${slug}`} target="_blank" className="underline whitespace-nowrap">Publieke pagina ↗</Link>
