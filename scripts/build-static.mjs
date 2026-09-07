@@ -1,7 +1,7 @@
 // Statische export van enkel de marketingsite: zet de server-routes tijdelijk opzij, bouwt met output=export, zet ze terug.
 import { renameSync, existsSync, mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
-const serverDirs = ["src/app/z", "src/app/app", "src/app/admin", "src/app/login", "src/app/api", "src/proxy.ts"];
+const serverDirs = ["src/app/z", "src/app/app", "src/app/admin", "src/app/login", "src/app/registreren", "src/app/api", "src/proxy.ts"];
 mkdirSync(".static-tmp", { recursive: true });
 const moved = [];
 for (const d of serverDirs) if (existsSync(d)) { const t = `.static-tmp/${d.replace(/\//g, "__")}`; renameSync(d, t); moved.push([d, t]); }
