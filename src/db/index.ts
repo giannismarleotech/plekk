@@ -22,6 +22,8 @@ async function create(): Promise<Db> {
     const client = postgres(process.env.DATABASE_URL, { prepare: false, max: 5 });
     const db = drizzle(client, { schema });
     if (process.env.AUTO_MIGRATE !== "false") await runMigrations(db);
+    // Lege database → demozaken + platformlogin aanmaken (SEED_DEMO=false om dat uit te zetten).
+    if (process.env.SEED_DEMO !== "false") { const { seedIfEmpty } = await import("./seed"); await seedIfEmpty(db); }
     return db;
   }
   const { PGlite } = await import("@electric-sql/pglite");
