@@ -44,7 +44,7 @@ export default async function ReportsPage({ params, searchParams }: PageProps<"/
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">Rapporten</h1>
-        <div className="flex items-center gap-2"><Link href={`?maand=${prev}`} className="btn-ghost px-3 py-1.5">‹</Link><span className="font-bold capitalize min-w-[11ch] text-center">{label}</span><Link href={`?maand=${nextMonth}`} className="btn-ghost px-3 py-1.5">›</Link></div>
+        <div className="flex items-center gap-2"><Link href={`?maand=${prev}`} className="btn-ghost px-3 py-1.5">‹</Link><span className="font-bold min-w-[11ch] text-center">{label.charAt(0).toUpperCase() + label.slice(1)}</span><Link href={`?maand=${nextMonth}`} className="btn-ghost px-3 py-1.5">›</Link></div>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label={unit} value={String(active.length)} sub={org.mode === "restaurant" ? `${covers} couverts` : `${newCustomers} klanten`} />
@@ -75,7 +75,7 @@ function Bars({ title, data, top = 7, sortKeys }: { title: string; data: Record<
     <div className="card p-4">
       <p className="font-bold mb-3">{title}</p>
       {entries.length === 0 ? <p className="text-sm text-muted">Nog geen gegevens.</p> : (
-        <ul className="space-y-2 text-sm">{entries.map(([k, v]) => <li key={k} className="grid grid-cols-[7rem_1fr_2rem] gap-2 items-center"><span className="truncate capitalize">{k}</span><span className="h-2.5 rounded-full bg-bg overflow-hidden"><span className="block h-full rounded-full" style={{ width: `${(v / max) * 100}%`, background: "var(--brand)" }} /></span><span className="tabular text-right text-muted">{v}</span></li>)}</ul>
+        <ul className="space-y-2 text-sm">{entries.map(([k, v]) => <li key={k} className="grid grid-cols-[7rem_1fr_2rem] gap-2 items-center"><span className="truncate">{k.charAt(0).toUpperCase() + k.slice(1)}</span><span className="h-2.5 rounded-full bg-bg overflow-hidden"><span className="block h-full rounded-full" style={{ width: `${(v / max) * 100}%`, background: "var(--brand)" }} /></span><span className="tabular text-right text-muted">{v}</span></li>)}</ul>
       )}
     </div>
   );
