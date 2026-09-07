@@ -39,8 +39,8 @@ export default async function PublicOrgPage({ params }: PageProps<"/z/[slug]">) 
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-5 py-8 grid gap-8 md:grid-cols-[1fr_300px]">
-        <section>
+      <main className="mx-auto max-w-5xl px-5 py-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_300px]">
+        <section className="min-w-0">
           <h2 className="text-2xl font-bold mb-4">{cta}</h2>
           <BookingFlow
             org={{ slug: org.slug, name: org.name, mode: org.mode, brandColor: org.brandColor, settings: org.settings }}
