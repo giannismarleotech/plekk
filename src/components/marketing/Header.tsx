@@ -31,7 +31,7 @@ export function Header({ lang, d, page }: { lang: Locale; d: Dictionary; page: P
             )}
           </div>
           {appAvailable && <a href={appUrl("/login")} className="hidden sm:inline-flex h-9 items-center px-3 rounded-lg text-sm font-semibold text-muted hover:text-ink">{d.nav.login}</a>}
-          <Link href={href(lang, "contact")} className="h-9 inline-flex items-center px-4 rounded-lg text-sm font-bold text-ink" style={{ background: "var(--green)" }}>{d.nav.cta}</Link>
+          <a href={appUrl("/registreren", href(lang, "contact"))} className="h-9 inline-flex items-center px-4 rounded-lg text-sm font-bold text-ink" style={{ background: "var(--green)" }}>{d.nav.cta}</a>
           <button onClick={() => setOpen((v) => !v)} className="xl:hidden h-9 w-9 inline-flex items-center justify-center rounded-lg border border-line bg-surface" aria-label="Menu" aria-expanded={open}>
             <span className="block w-4 h-0.5 bg-ink relative before:absolute before:w-4 before:h-0.5 before:bg-ink before:-top-1.5 after:absolute after:w-4 after:h-0.5 after:bg-ink after:top-1.5" />
           </button>

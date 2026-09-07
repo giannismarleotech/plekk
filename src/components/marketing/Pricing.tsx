@@ -1,5 +1,6 @@
 "use client";
 
+import { appUrl } from "@/config/app-url";
 import { useState } from "react";
 import Link from "next/link";
 import type { Dictionary } from "@/i18n";
@@ -22,7 +23,7 @@ export function PricingTable({ d, contactHref, compact = false }: { d: Dictionar
             <p className="text-xs text-muted">{yearly ? `€${t.yearly} / ${d.common.yearly.toLowerCase()} · ` : ""}{d.common.exclVat}</p>
             <p className="mt-3 text-muted">{t.tagline}</p>
             {!compact && <ul className="mt-5 space-y-2 text-sm flex-1">{t.features.map((f) => <li key={f} className="flex gap-2"><span className="mt-1.5 w-2 h-2 rounded-[2px] shrink-0" style={{ background: "var(--green)" }} />{f}</li>)}</ul>}
-            <Link href={contactHref} className={`mt-6 btn font-bold ${t.popular ? "text-ink" : "border border-line bg-surface hover:bg-bg"}`} style={t.popular ? { background: "var(--green)" } : undefined}>{d.common.getStarted}</Link>
+            <a href={appUrl("/registreren", contactHref)} className={`mt-6 btn font-bold ${t.popular ? "text-ink" : "border border-line bg-surface hover:bg-bg"}`} style={t.popular ? { background: "var(--green)" } : undefined}>{d.common.getStarted}</a>
           </div>
         ))}
       </div>
