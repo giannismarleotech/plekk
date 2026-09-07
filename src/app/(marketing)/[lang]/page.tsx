@@ -1,3 +1,4 @@
+import { appUrl } from "@/config/app-url";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getDictionary, href, isLocale, alternates, locales, type Locale } from "@/i18n";
@@ -38,7 +39,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
             </h1>
             <p className="mt-6 text-lg md:text-xl text-[#C9D1CB] max-w-xl">{h.lede}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={href(l, "contact")} className="btn font-bold text-ink text-base px-6 py-3" style={{ background: "var(--green)" }}>{d.common.getStarted}</Link>
+              <a href={appUrl("/registreren", href(l, "contact"))} className="btn font-bold text-ink text-base px-6 py-3" style={{ background: "var(--green)" }}>{d.common.getStarted}</a>
               <Link href={href(l, "examples")} className="btn border border-white/25 text-white hover:bg-white/10 text-base px-6 py-3">{d.common.seeDemo}</Link>
             </div>
             <dl className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -116,7 +117,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
         <p className="mt-6 text-sm text-muted"><strong>{d.common.founders}:</strong> {d.common.foundersDesc} <Link href={href(l, "pricing")} className="underline">{d.common.readMore}</Link></p>
       </Section>
 
-      <Cta title={h.ctaTitle} body={h.ctaBody} primary={{ label: d.common.getStarted, href: href(l, "contact") }} secondary={{ label: d.common.seeDemo, href: href(l, "examples") }} />
+      <Cta title={h.ctaTitle} body={h.ctaBody} primary={{ label: d.common.getStarted, href: appUrl("/registreren", href(l, "contact")) }} secondary={{ label: d.common.seeDemo, href: href(l, "examples") }} />
     </Shell>
   );
 }
