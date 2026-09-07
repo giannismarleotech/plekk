@@ -31,7 +31,10 @@ export default async function AgendaPage({ params, searchParams }: PageProps<"/a
           <ManualBooking slug={slug} mode={org.mode} day={day} resources={resources.filter((r) => r.kind !== "kitchen").map((r) => ({ id: r.id, name: r.name, extra: r.kind === "table" ? `${r.capacity} pl.` : undefined }))} offerings={offerings.filter((o) => o.kind === "service").map((o) => ({ id: o.id, name: o.name, extra: minutesLabel(o.durationMin ?? 0) }))} />
         </div>
       </div>
-      {org.mode === "salon" && <SalonTimeline slug={slug} day={day} staff={resources} items={items} hours={org.openingHours} />}
+      {org.mode === "salon" && (<>
+        <SalonTimeline slug={slug} day={day} staff={resources} items={items} hours={org.openingHours} />
+        <AppointmentList slug={slug} items={items} />
+      </>)}
       {org.mode === "restaurant" && <ReservationList slug={slug} items={items} />}
       {org.mode === "takeaway" && <OrderList slug={slug} items={items} />}
     </div>
@@ -42,7 +45,7 @@ type Item = Awaited<ReturnType<typeof bookingsOnDay>>[number];
 
 function SalonTimeline({ slug, day, staff, items, hours }: { slug: string; day: string; staff: schema.Resource[]; items: Item[]; hours: schema.OpeningHours }) {
   const blocks = openingBlocks(hours, day);
-  if (!blocks.length) return <p className="text-muted">Gesloten op deze dag.</p>;
+  if (!blocks.length) return <p className="text-muted">Gesloten op deze dag{items.length ? ` — toch ${items.length} ${items.length === 1 ? "afspraak" : "afspraken"} ingepland (zie hieronder)` : ""}.</p>;
   const open = localToDate(day, blocks[0].open);
   const close = localToDate(day, blocks[blocks.length - 1].close);
   const totalMin = (close.getTime() - open.getTime()) / 60000;
@@ -78,8 +81,31 @@ function SalonTimeline({ slug, day, staff, items, hours }: { slug: string; day: 
   );
 }
 
+function AppointmentList({ slug, items }: { slug: string; items: Item[] }) {
+  if (!items.length) return <p className="text-sm text-muted">Geen afspraken op deze dag. Klik op “+ Nieuwe afspraak” om er zelf één in te plannen (bv. een telefonische boeking).</p>;
+  return (
+    <div>
+      <h2 className="font-bold mb-2">Afspraken ({items.filter((b) => b.status !== "cancelled").length})</h2>
+      <ul className="card divide-y divide-line">
+        {items.map((b) => (
+          <li key={b.id} className={`flex flex-wrap items-center gap-3 px-4 py-3 ${b.status === "cancelled" ? "opacity-50" : ""}`}>
+            <span className="font-mono font-semibold tabular w-14">{fmtTime(b.startsAt)}</span>
+            <span className="flex-1 min-w-[12rem]">
+              <span className="font-semibold">{b.customer?.name}</span>
+              <span className="block text-sm text-muted">{b.items.map((i) => i.name).join(", ")}{b.resource ? ` · bij ${b.resource.name}` : ""}{b.customer?.phone ? ` · ${b.customer.phone}` : ""}{b.notes ? ` · “${b.notes}”` : ""}</span>
+            </span>
+            <span className="tabular text-sm">{euro(b.totalCents)}</span>
+            <StatusPill status={b.status} />
+            <StatusButtons slug={slug} bookingId={b.id} kind={b.kind} status={b.status} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function ReservationList({ slug, items }: { slug: string; items: Item[] }) {
-  if (!items.length) return <p className="text-muted">Geen reservaties op deze dag.</p>;
+  if (!items.length) return <p className="text-muted">Geen reservaties op deze dag. Telefonische reservatie? Klik op “+ Nieuwe reservatie”.</p>;
   const covers = items.filter((b) => !["cancelled", "no_show"].includes(b.status)).reduce((n, b) => n + b.partySize, 0);
   return (
     <div>
@@ -104,7 +130,7 @@ function ReservationList({ slug, items }: { slug: string; items: Item[] }) {
 }
 
 function OrderList({ slug, items }: { slug: string; items: Item[] }) {
-  if (!items.length) return <p className="text-muted">Geen bestellingen op deze dag.</p>;
+  if (!items.length) return <p className="text-muted">Geen bestellingen op deze dag. Nieuwe bestellingen verschijnen hier én op het keukenscherm.</p>;
   return (
     <ul className="card divide-y divide-line">
       {items.map((b) => (
