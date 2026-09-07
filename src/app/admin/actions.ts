@@ -64,3 +64,19 @@ export async function setPlan(orgId: string, plan: string) {
   await db.update(schema.organisations).set({ plan }).where(eq(schema.organisations.id, orgId));
   revalidatePath("/admin");
 }
+
+/** Zaak volledig verwijderen (cascade: resources, aanbod, klanten, boekingen, koppelingen). Logins zonder andere zaak gaan mee. */
+export async function deleteOrg(orgId: string, form: FormData) {
+  await admin();
+  if (form.get("confirm") !== "1") return;
+  const db = await getDb();
+  const members = await db.query.memberships.findMany({ where: eq(schema.memberships.orgId, orgId), with: { user: true } });
+  await db.delete(schema.organisations).where(eq(schema.organisations.id, orgId));
+  for (const m of members) {
+    if (m.user.isPlatformAdmin) continue;
+    const rest = await db.query.memberships.findFirst({ where: eq(schema.memberships.userId, m.userId) });
+    if (!rest) await db.delete(schema.users).where(eq(schema.users.id, m.userId));
+  }
+  revalidatePath("/admin");
+  redirect("/admin?deleted=1");
+}

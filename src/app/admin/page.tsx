@@ -5,7 +5,7 @@ import { currentUser } from "@/lib/auth";
 import { getDb, schema } from "@/db";
 import { Logo } from "@/components/Logo";
 import { modeLabels } from "@/config/site";
-import { createOrgAction, addOwner, setPlan } from "./actions";
+import { createOrgAction, addOwner, setPlan, deleteOrg } from "./actions";
 import { ResetPasswordButton } from "./ResetPasswordButton";
 import { logout } from "@/app/login/actions";
 
@@ -52,8 +52,16 @@ export default async function AdminPage({ searchParams }: PageProps<"/admin">) {
                   </div>
                   <form className="text-sm">
                     <p className="text-xs font-mono uppercase tracking-wider text-muted mb-1">Plan</p>
-                    <div className="flex flex-wrap gap-1 max-w-[14rem]">{["demo", "founders", "solo", "zaak", "plus", "paused"].map((p) => <button key={p} formAction={setPlan.bind(null, o.id, p)} className={`text-xs px-2 py-1 rounded border ${o.plan === p ? "border-ink font-bold bg-bg" : "border-line"}`}>{p}</button>)}</div>
+                    <div className="flex flex-wrap gap-1 max-w-[14rem]">{["trial", "demo", "founders", "solo", "zaak", "plus", "paused"].map((p) => <button key={p} formAction={setPlan.bind(null, o.id, p)} className={`text-xs px-2 py-1 rounded border ${o.plan === p ? "border-ink font-bold bg-bg" : "border-line"}`}>{p}</button>)}</div>
+                    <details className="mt-3 text-xs"><summary className="cursor-pointer text-red-700 underline">Zaak verwijderen…</summary>
+                      <div className="mt-2 rounded border border-red-200 bg-red-50 p-2 space-y-2">
+                        <p>Verwijdert de zaak, alle boekingen, klanten en logins die alleen aan deze zaak hangen. Kan niet ongedaan gemaakt worden.</p>
+                        <label className="flex items-center gap-2"><input type="checkbox" name="confirm" value="1" form={`del-${o.id}`} required /> Ja, verwijder <b>{o.name}</b></label>
+                        <button form={`del-${o.id}`} className="text-red-700 font-bold underline">Definitief verwijderen</button>
+                      </div>
+                    </details>
                   </form>
+                  <form id={`del-${o.id}`} action={deleteOrg.bind(null, o.id)} />
                 </div>
               );
             })}
