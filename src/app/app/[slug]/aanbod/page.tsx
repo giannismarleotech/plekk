@@ -38,7 +38,7 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
   return (
     <div className="grid gap-8 lg:grid-cols-2">
       <section className="space-y-3">
-        <h1 className="text-2xl font-bold">{offLabel}</h1>
+        <div><h1 className="text-2xl font-bold">{offLabel}</h1><p className="text-sm text-muted mt-1">{m === "salon" ? "Elke behandeling met duur en prijs. Klik op een dienst om ze aan te passen; 'Verberg' haalt ze tijdelijk van je pagina." : m === "restaurant" ? "Shifts zijn de blokken waarin klanten kunnen reserveren (bv. lunch en diner). Tafels staan rechts." : "Alles wat klanten kunnen bestellen, met prijs en opties. Klik op een product om het aan te passen."}</p></div>
         <div className="card divide-y divide-line">
           {offerings.map((o) => (
             <details key={o.id} className={`group ${o.active ? "" : "opacity-50"}`}>
@@ -63,7 +63,7 @@ export default async function OfferPage({ params }: PageProps<"/app/[slug]/aanbo
       </section>
 
       <section className="space-y-3">
-        <h2 className="text-2xl font-bold">{resLabel}</h2>
+        <div><h2 className="text-2xl font-bold">{resLabel}</h2><p className="text-sm text-muted mt-1">{m === "salon" ? "Elke medewerker heeft een eigen agenda; klanten kiezen bij wie ze boeken." : m === "restaurant" ? "Plekk wijst elke reservatie automatisch toe aan een vrije tafel die groot genoeg is." : "Hoeveel bestellingen je keuken per tijdslot aankan. Te veel? Verlaag het cijfer."}</p></div>
         <div className="card divide-y divide-line">
           {resources.map((r) => (
             <details key={r.id} className={`group ${r.active ? "" : "opacity-50"}`}>
