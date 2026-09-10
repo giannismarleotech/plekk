@@ -7,7 +7,7 @@ type M = Dictionary["mock"];
 const GREEN = "#1ED760", ORANGE = "#FF6B1A", INK = "#101814";
 
 /** Telefoonframe met daarin een boekingsflow die zichzelf afspeelt: salon → restaurant → frituur. */
-export function HeroMock({ m }: { m: M }) {
+export function HeroMock({ m, palette }: { m: M; palette?: [string, string, string] }) {
   const [t, setT] = useState(0); // 0..11, 4 stappen per mode
   useEffect(() => {
     const id = setInterval(() => setT((x) => (x + 1) % 12), 1400);
@@ -15,7 +15,7 @@ export function HeroMock({ m }: { m: M }) {
   }, []);
   const mode = Math.floor(t / 4) as 0 | 1 | 2;
   const step = t % 4;
-  const brand = [ "#B23A5A", "#1F5F4A", "#D97706" ][mode];
+  const brand = (palette ?? ["#B23A5A", "#1F5F4A", "#D97706"])[mode];
   const name = [m.salonName, m.restaurantName, m.takeawayName][mode];
   return (
     <div className="relative mx-auto w-[300px] h-[600px] rounded-[40px] bg-[#101814] p-3 shadow-2xl ring-1 ring-white/10" aria-hidden="true">
