@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node scripts/unpack-site.mjs",
+    "predev": "node scripts/unpack-site.mjs && node scripts/patch-site.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/unpack-site.mjs",
+    "prebuild": "node scripts/unpack-site.mjs && node scripts/patch-site.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -13,7 +13,11 @@
     "db:migrate": "drizzle-kit migrate",
     "db:seed": "tsx scripts/seed.ts",
     "typecheck": "tsc --noEmit",
-    "build:static": "node scripts/build-static.mjs"
+    "build:static": "node scripts/build-static.mjs",
+    "test": "tsx scripts/test-abonnement.ts",
+    "check:site": "node scripts/check-site.mjs",
+    "e2e": "node scripts/e2e.mjs",
+    "site:patch": "node scripts/patch-site.mjs"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.8",

@@ -64,3 +64,9 @@ out/
 /public/studio-motion.js
 /public/local-business.png
 /public/plekk-sculpture.png
+/public/sitemap.xml
+/public/robots.txt
+
+# Python
+__pycache__/
+*.pyc
