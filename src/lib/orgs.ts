@@ -5,6 +5,7 @@ import { getDb, schema } from "@/db";
 import { id } from "./ids";
 import { hashPassword } from "./password";
 import type { OpeningHours, OrgSettings } from "@/db/schema";
+import { trialDays } from "./plans";
 
 export type Mode = "salon" | "restaurant" | "takeaway";
 
@@ -38,7 +39,9 @@ export async function createOrganisation(input: {
   await db.insert(schema.organisations).values({
     id: orgId, slug, name: input.name.trim(), mode: input.mode, city: input.city || null, address: input.address || null, phone: input.phone || null, email: input.email || null,
     brandColor: input.brandColor && /^#[0-9a-fA-F]{6}$/.test(input.brandColor) ? input.brandColor : "#0F7A38",
-    openingHours: defaultHours[input.mode], settings: defaultSettings[input.mode], plan: input.plan ?? "founders", locale: input.locale ?? "nl",
+    openingHours: defaultHours[input.mode], settings: defaultSettings[input.mode], plan: input.plan ?? "solo", locale: input.locale ?? "nl",
+    // Iedereen start in de proefperiode; de webhook van Stripe zet dit later op "active".
+    planStatus: "trialing", trialEndsAt: new Date(Date.now() + trialDays * 86_400_000),
   });
   // standaard-resources zodat de zaak meteen boekbaar is
   if (input.mode === "takeaway") await db.insert(schema.resources).values({ id: id(), orgId, name: "Keuken", kind: "kitchen", capacity: 6, sortOrder: 0 });

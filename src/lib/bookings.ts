@@ -12,6 +12,8 @@ import { id, reference } from "./ids";
 import { site } from "@/config/site";
 import { headers } from "next/headers";
 import { createPayment } from "./payments/mollie";
+import { createBookingCheckout, stripeConfigured } from "./payments/stripe";
+import { accessFor } from "./plan-access";
 
 export async function getOrgBySlug(slug: string) {
   const db = await getDb();
@@ -91,6 +93,9 @@ export async function createBooking(args: {
   const startsAt = localToDate(args.day, args.time);
   const db = await getDb();
 
+  // Abonnement verlopen: ook rechtstreekse verzoeken tegenhouden, niet enkel de knop verbergen.
+  if (org.plan !== "demo" && !accessFor(org).active) throw new Error("Online boeken staat even op pauze bij deze zaak.");
+
   let q: SlotQuery;
   if (org.mode === "salon" && args.salon) q = { mode: "salon", day: args.day, offeringId: args.salon.offeringId, staffId: args.salon.staffId };
   else if (org.mode === "restaurant" && args.restaurant) q = { mode: "restaurant", day: args.day, partySize: args.restaurant.partySize };
@@ -143,15 +148,30 @@ export async function createBooking(args: {
   }
 
   const booking = await db.query.bookings.findFirst({ where: eq(schema.bookings.id, bid), with: { customer: true, resource: true, items: true, org: true } });
-  // Betaling nodig? (waarborg of vooraf betalen) → Mollie-checkout, als die geconfigureerd is
+  // Betaling nodig? (waarborg of vooraf betalen). Stripe heeft voorrang — daar loopt
+  // de rest van Plekk ook op; Mollie blijft werken voor zaken die dat al gebruiken.
   let checkoutUrl: string | null = null;
   if (booking && booking.paymentStatus === "pending") {
     const amount = booking.kind === "order" ? booking.totalCents : booking.depositCents;
     const base = await getBaseUrl();
-    try {
-      const pay = await createPayment({ bookingId: bid, amountCents: amount, description: `${org.name} ${ref}`, redirectUrl: `${base}/z/${org.slug}/bevestigd/${ref}`, webhookUrl: `${base}/api/webhooks/mollie` });
-      if (pay) { checkoutUrl = pay.checkoutUrl; await db.update(schema.bookings).set({ paymentRef: pay.id }).where(eq(schema.bookings.id, bid)); }
-    } catch (e) { console.error("[mollie]", e); }
+    const back = `${base}/z/${org.slug}/bevestigd/${ref}`;
+    if (stripeConfigured()) {
+      try {
+        const pay = await createBookingCheckout({
+          bookingId: bid, orgName: org.name, amountCents: amount, email: booking.customer?.email,
+          description: booking.kind === "order" ? `bestelling ${ref}` : `waarborg ${ref}`,
+          successUrl: `${back}?betaald=1`, cancelUrl: `${back}?betaald=0`,
+        });
+        checkoutUrl = pay.checkoutUrl;
+        await db.update(schema.bookings).set({ paymentRef: pay.id, paymentProvider: "stripe" }).where(eq(schema.bookings.id, bid));
+      } catch (e) { console.error("[stripe]", e); }
+    }
+    if (!checkoutUrl) {
+      try {
+        const pay = await createPayment({ bookingId: bid, amountCents: amount, description: `${org.name} ${ref}`, redirectUrl: back, webhookUrl: `${base}/api/webhooks/mollie` });
+        if (pay) { checkoutUrl = pay.checkoutUrl; await db.update(schema.bookings).set({ paymentRef: pay.id, paymentProvider: "mollie" }).where(eq(schema.bookings.id, bid)); }
+      } catch (e) { console.error("[mollie]", e); }
+    }
   }
   const { sendBookingConfirmation, notifyOwner } = await import("./notify");
   if (booking) { void sendBookingConfirmation(booking).catch((e) => console.error("[notify]", e)); void notifyOwner(booking).catch((e) => console.error("[notify owner]", e)); }
