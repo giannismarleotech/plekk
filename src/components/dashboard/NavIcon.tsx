@@ -1,5 +1,5 @@
 /** Eenvoudige lijn-iconen voor de navigatie. Geen emoji: die zien er op elk toestel anders uit. */
-export type IconName = "home" | "calendar" | "kitchen" | "list" | "people" | "chart" | "settings" | "rocket" | "menu";
+export type IconName = "home" | "calendar" | "kitchen" | "list" | "people" | "chart" | "settings" | "rocket" | "menu" | "card";
 
 const paths: Record<IconName, React.ReactNode> = {
   home: <><path d="M3 10.5 12 3l9 7.5" /><path d="M5.5 9.5V20h13V9.5" /></>,
@@ -11,6 +11,7 @@ const paths: Record<IconName, React.ReactNode> = {
   settings: <><circle cx="12" cy="12" r="3.2" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.2 2.2M16.9 16.9l2.2 2.2M19.1 4.9l-2.2 2.2M7.1 16.9l-2.2 2.2" /></>,
   rocket: <><path d="M12 3c3.5 2 5.5 5.5 5.5 9.5L12 17l-5.5-4.5C6.5 8.5 8.5 5 12 3Z" /><path d="M9 17l-2 4 4-2M15 17l2 4-4-2" /><circle cx="12" cy="10" r="1.6" /></>,
   menu: <><path d="M4 7h16M4 12h16M4 17h16" /></>,
+  card: <><rect x="2.5" y="5" width="19" height="14" rx="2.5" /><path d="M2.5 10h19" /><path d="M6.5 15h4" /></>,
 };
 
 export function NavIcon({ name, size = 22 }: { name: IconName; size?: number }) {
