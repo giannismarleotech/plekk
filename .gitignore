@@ -46,3 +46,21 @@ next-env.d.ts
 
 .static-tmp/
 out/
+
+# Marketingsite: uitgepakt uit vendor/marketing-site.tar.gz door scripts/unpack-site.mjs
+/public/nl/
+/public/fr/
+/public/en/
+/public/de/
+/public/fonts/
+/public/*.css
+/public/app.js
+/public/brand-load.js
+/public/growth.js
+/public/i18n-data.js
+/public/i18n.js
+/public/pages-data.js
+/public/pages.js
+/public/studio-motion.js
+/public/local-business.png
+/public/plekk-sculpture.png
