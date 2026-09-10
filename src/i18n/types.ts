@@ -24,6 +24,26 @@ export type Dictionary = {
     quoteText: string; quoteName: string;
     ctaTitle: string; ctaBody: string;
   };
+  /** Nieuwe merk-landingspagina (12 secties). */
+  landing: {
+    heroEyebrow: string; heroTitle: string[]; heroLede: string; heroCta: string; heroCta2: string; heroNote1: string; heroNote2: string;
+    strip: string[];
+    modesEyebrow: string; modesTitle: string[]; modesLede: string;
+    modes: { key: "salons" | "restaurants" | "takeaway"; num: string; kicker: string; title: string[]; body: string; cta: string }[];
+    whyEyebrow: string; whyTitle: string[]; whyLede: string; whyCta: string;
+    why: { title: string; body: string }[];
+    platformEyebrow: string; platformTitle: string[]; platformCta: string;
+    dashEyebrow: string; dashTitle: string[]; dashLede: string; dashCta: string;
+    stepsEyebrow: string; stepsTitle: string[]; stepsCta: string;
+    steps: { title: string; body: string }[];
+    priceEyebrow: string; priceTitle: string[]; priceLede: string; priceFoot: string;
+    storyEyebrow: string; storyTitle: string[]; story: string[]; storyCta: string;
+    calcEyebrow: string; calcTitle: string[]; calcLede: string; calcCta: string;
+    faqEyebrow: string; faqTitle: string; faq: { q: string; a: string }[];
+    nextEyebrow: string; nextTitle: string[];
+    next: { title: string; body: string; cta: string }[];
+    closeEyebrow: string; closeTitle: string[]; closeCta: string;
+  };
   mock: {
     salonName: string; service: string; staff: string; anyone: string; pickTime: string; confirm: string; confirmed: string;
     restaurantName: string; guests: string; deposit: string;
