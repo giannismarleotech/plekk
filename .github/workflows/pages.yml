@@ -1,4 +1,5 @@
-# Zet de marketingsite (4 talen) automatisch op GitHub Pages bij elke push naar main.
+# Zet de marketingsite op GitHub Pages bij elke push naar main.
+# De site staat als archief in vendor/ en wordt hier uitgepakt en gepubliceerd.
 # Eenmalig in de repo: Settings → Pages → Source: "GitHub Actions".
 name: Website naar GitHub Pages
 on:
@@ -18,15 +19,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm }
-      - run: npm ci
-      - name: Statische build (alleen de website; app-routes hebben een server nodig)
-        run: node scripts/build-static.mjs
-        env:
-          # Laat leeg voor <gebruiker>.github.io/<repo>. Zet op "" via een eigen domein (CNAME) in Settings → Pages.
-          STATIC_BASE_PATH: ${{ github.event.repository.name == format('{0}.github.io', github.repository_owner) && '' || format('/{0}', github.event.repository.name) }}
-          # Vul in zodra de app ergens draait (Netlify/Vercel), dan werken de demo- en loginknoppen weer.
-          NEXT_PUBLIC_APP_BASE: ${{ vars.APP_BASE || '' }}
+        with: { node-version: "22" }
+      - name: Site uitpakken en opkuisen
+        run: |
+          # Zelfde stappen als bij de app-build: uitpakken, dan de correcties
+          # (adressen, teksten, juridische pagina's, sitemap) uit scripts/patch-site.mjs.
+          node scripts/unpack-site.mjs
+          node scripts/patch-site.mjs
+          mkdir -p out
+          cp -r public/. out/
+          # Eigen domein: zonder dit bestand serveert GitHub op /plekk en breken de paden.
+          echo "plekk.marleo.tech" > out/CNAME
+          # GitHub mag de mappen niet als Jekyll-project behandelen.
+          touch out/.nojekyll
+          # Zonder deze regel krijgen bezoekers van een onbekend pad de standaardpagina van GitHub.
+          cp out/nl/index.html out/404.html
+          # De wortel stuurt door naar de taal van de bezoeker.
+          cp out/nl/index.html out/index.html
+          echo "Pagina's: $(find out -name '*.html' | wc -l)"
       - uses: actions/upload-pages-artifact@v3
         with: { path: out }
   deploy:
