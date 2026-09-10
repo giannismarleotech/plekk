@@ -1,0 +1,839 @@
+{
+ "domain": "plekk.marleo.tech",
+ "langs": [
+  "nl",
+  "fr",
+  "en",
+  "de"
+ ],
+ "swaps": {
+  "nl": [
+   [
+    "Van de eerste demo tot een mogelijke opstart. Hier vind je de antwoorden, inclusief wat er nog in ontwikkeling is.",
+    "Van de eerste demo tot je eerste boeking. Hier vind je de antwoorden over opstart, prijzen en betalingen."
+   ],
+   [
+    "Voorgestelde abonnementen",
+    "Abonnementen"
+   ],
+   [
+    "Plekk is in ontwikkeling.",
+    "14 dagen gratis proberen."
+   ],
+   [
+    "Je sluit hier geen abonnement af.",
+    "Maandelijks opzegbaar, geen opstartkosten."
+   ],
+   [
+    "Ontdek het prototype",
+    "Bekijk een demo"
+   ],
+   [
+    "Demo beschikbaar · Zakelijke opstart op aanvraag",
+    "14 dagen gratis · Maandelijks opzegbaar"
+   ],
+   [
+    "Over deze demo",
+    "Veelgestelde vragen"
+   ],
+   [
+    "Dit maakt een lokaal voorbeeld. Je sluit geen abonnement af en je zaak gaat nog niet online.",
+    "Dit maakt een voorbeeld in je browser, zonder account. Wil je echt online? Maak je zaak aan en probeer 14 dagen gratis."
+   ],
+   [
+    "<span class=\"prototype-tag\">Voorgestelde abonnementen</span><p>Plekk is in ontwikkeling.<br>Je sluit hier geen abonnement af.</p>",
+    "<span class=\"prototype-tag\">Abonnementen</span><p>14 dagen gratis proberen.<br>Maandelijks opzegbaar, geen opstartkosten.</p>"
+   ],
+   [
+    "Je kunt nu de interactieve demo proberen en je eigen voorbeeldpagina samenstellen. Echte boekingen, betalingen en accounts zijn in dit prototype nog niet aangesloten.",
+    "Probeer de demo of maak meteen je eigen zaak aan. Boekingen, bevestigingsmails en betalingen werken echt — je start met 14 dagen gratis."
+   ],
+   [
+    "We zitten in de prototypefase. Dat betekent dat je al veel kunt ervaren, en dat er nog werk nodig is voor dagelijks zakelijk gebruik. We willen die volgende stap zetten met ondernemers die hun praktijk met ons willen delen.",
+    "Plekk draait bij echte zaken: afspraken, reservaties en bestellingen komen binnen, klanten krijgen hun bevestiging, en je ziet alles in je dashboard. We blijven bouwen samen met de ondernemers die het dagelijks gebruiken."
+   ],
+   [
+    "Je kunt het prototype ontdekken en interesse in een pilot bespreken. Je sluit op deze website nog geen betaald abonnement af. Een echte opstart vraagt eerst bevestigde functies, voorwaarden en werkende koppelingen.",
+    "Je maakt je zaak zelf aan en bent binnen het kwartier online. De eerste 14 dagen zijn gratis, daarna kies je een formule vanaf € 19 per maand. Maandelijks opzegbaar."
+   ],
+   [
+    "Drie voorgestelde abonnementen, met heldere grenzen en 0% Plekk-commissie. Er wordt in dit prototype niets aangerekend.",
+    "Drie abonnementen, met heldere grenzen en 0% Plekk-commissie. Je betaalt een vast bedrag per maand, nooit een percentage op je omzet."
+   ],
+   [
+    "Boeken, reserveren en bestellen op jouw eigen plek. Ontdek het interactieve Plekk prototype voor lokale zaken.",
+    "Boeken, reserveren en bestellen op jouw eigen plek. Plekk is het boekingsplatform voor Belgische kappers, restaurants en frituren."
+   ],
+   [
+    "Antwoorden over het prototype, de demo, abonnementen en de volgende stap.",
+    "Antwoorden over de demo, abonnementen, betalingen en de opstart."
+   ]
+  ],
+  "fr": [
+   [
+    "Cela crée un exemple local. Aucun abonnement n’est souscrit et votre commerce n’est pas mis en ligne.",
+    "Cela crée un exemple dans votre navigateur, sans compte. Envie d’être vraiment en ligne ? Créez votre établissement et essayez 14 jours gratuitement."
+   ],
+   [
+    "De la première démo au démarrage éventuel. Voici les réponses, y compris ce qui est encore en développement.",
+    "De la première démo à votre première réservation. Voici les réponses sur le démarrage, les prix et les paiements."
+   ],
+   [
+    "Abonnements proposés",
+    "Abonnements"
+   ],
+   [
+    "Plekk est en développement.",
+    "14 jours d’essai gratuit."
+   ],
+   [
+    "Vous ne souscrivez aucun abonnement ici.",
+    "Résiliable chaque mois, sans frais de démarrage."
+   ],
+   [
+    "Découvrir le prototype",
+    "Voir une démo"
+   ],
+   [
+    "Démo disponible · Démarrage professionnel sur demande",
+    "14 jours gratuits · Résiliable chaque mois"
+   ],
+   [
+    "À propos de cette démo",
+    "Questions fréquentes"
+   ],
+   [
+    "<span class=\"prototype-tag\">Abonnements proposés</span><p>Plekk est en développement.<br>Vous ne souscrivez aucun abonnement ici.</p>",
+    "<span class=\"prototype-tag\">Abonnements</span><p>14 jours d’essai gratuit.<br>Résiliable chaque mois, sans frais de démarrage.</p>"
+   ],
+   [
+    "Nous sommes au stade du prototype. Beaucoup de choses sont à essayer ; le travail continue pour un usage quotidien. Nous souhaitons avancer avec des entrepreneurs prêts à partager leur expérience.",
+    "Plekk tourne chez de vrais commerces : rendez-vous, réservations et commandes arrivent, les clients reçoivent leur confirmation, et vous voyez tout dans votre tableau de bord. Nous continuons à construire avec ceux qui l’utilisent chaque jour."
+   ],
+   [
+    "Découvrez le prototype et parlez-nous d’un pilote. Aucun abonnement payant n’est souscrit ici. Un démarrage réel nécessite des fonctions confirmées, des conditions et des connexions opérationnelles.",
+    "Vous créez votre établissement vous-même et vous êtes en ligne en un quart d’heure. Les 14 premiers jours sont gratuits, ensuite à partir de 19 € par mois. Résiliable chaque mois."
+   ],
+   [
+    "Trois abonnements proposés, des limites claires et 0 % de commission Plekk. Aucun montant n’est facturé dans le prototype.",
+    "Trois abonnements, des limites claires et 0 % de commission Plekk. Un montant fixe par mois, jamais un pourcentage sur votre chiffre d’affaires."
+   ],
+   [
+    "Rendez-vous, réservations et commandes sur votre propre page. Découvrez le prototype interactif Plekk pour les commerces locaux.",
+    "Rendez-vous, réservations et commandes sur votre propre page. Plekk est la plateforme de réservation des coiffeurs, restaurants et friteries belges."
+   ],
+   [
+    "Réponses sur le prototype, les démos, les abonnements et la suite.",
+    "Réponses sur les démos, les abonnements, les paiements et le démarrage."
+   ]
+  ],
+  "en": [
+   [
+    "This creates a local example. No subscription is taken out and your business does not go online.",
+    "This creates an example in your browser, without an account. Want to go live? Create your business and try it free for 14 days."
+   ],
+   [
+    "From the first demo to a potential setup. Find answers, including what is still in development.",
+    "From the first demo to your first booking. Find answers about getting started, prices and payments."
+   ],
+   [
+    "Proposed subscriptions",
+    "Subscriptions"
+   ],
+   [
+    "Plekk is in development.",
+    "14 days free."
+   ],
+   [
+    "You are not subscribing here.",
+    "Cancel monthly, no setup fee."
+   ],
+   [
+    "Explore the prototype",
+    "See a demo"
+   ],
+   [
+    "Demo available · Business setup on request",
+    "14 days free · Cancel monthly"
+   ],
+   [
+    "About this demo",
+    "Frequently asked questions"
+   ],
+   [
+    "<span class=\"prototype-tag\">Proposed subscriptions</span><p>Plekk is in development.<br>You are not subscribing here.</p>",
+    "<span class=\"prototype-tag\">Subscriptions</span><p>14 days free.<br>Cancel monthly, no setup fee.</p>"
+   ],
+   [
+    "We are at the prototype stage. There is plenty to try, and work remains before daily business use. We want to take the next step with owners willing to share their experience.",
+    "Plekk runs at real businesses: appointments, reservations and orders come in, customers get their confirmation, and you see everything in your dashboard. We keep building with the owners who use it every day."
+   ],
+   [
+    "Explore the prototype and discuss a pilot. No paid subscription is sold here. A real setup requires confirmed features, terms and working connections.",
+    "You create your business yourself and you are online within fifteen minutes. The first 14 days are free, then from €19 a month. Cancel monthly."
+   ],
+   [
+    "Three proposed plans, clear limits and 0% Plekk commission. Nothing is charged in this prototype.",
+    "Three plans, clear limits and 0% Plekk commission. A fixed amount per month, never a percentage of your revenue."
+   ],
+   [
+    "Bookings, reservations and orders in your own space. Discover the interactive Plekk prototype for local businesses.",
+    "Bookings, reservations and orders in your own space. Plekk is the booking platform for Belgian salons, restaurants and takeaways."
+   ],
+   [
+    "Answers about the prototype, demos, plans and next steps.",
+    "Answers about demos, plans, payments and getting started."
+   ]
+  ],
+  "de": [
+   [
+    "Dies erstellt ein lokales Beispiel. Du schließt kein Abo ab und dein Betrieb geht noch nicht online.",
+    "Dies erstellt ein Beispiel in deinem Browser, ohne Konto. Wirklich online gehen? Lege deinen Betrieb an und teste 14 Tage gratis."
+   ],
+   [
+    "Vorgeschlagene Abos",
+    "Abos"
+   ],
+   [
+    "Plekk wird noch entwickelt.",
+    "14 Tage gratis testen."
+   ],
+   [
+    "Hier schließen Sie kein Abo ab.",
+    "Monatlich kündbar, keine Startgebühr."
+   ],
+   [
+    "Prototyp entdecken",
+    "Demo ansehen"
+   ],
+   [
+    "Demo verfügbar · Geschäftlicher Start auf Anfrage",
+    "14 Tage gratis · Monatlich kündbar"
+   ],
+   [
+    "Über diese Demo",
+    "Häufige Fragen"
+   ],
+   [
+    "<span class=\"prototype-tag\">Vorgeschlagene Abos</span><p>Plekk wird noch entwickelt.<br>Hier schließen Sie kein Abo ab.</p>",
+    "<span class=\"prototype-tag\">Abos</span><p>14 Tage gratis testen.<br>Monatlich kündbar, keine Startgebühr.</p>"
+   ],
+   [
+    "Wir sind in der Prototypphase. Vieles lässt sich ausprobieren; für den täglichen Einsatz bleibt Arbeit. Den nächsten Schritt möchten wir mit Unternehmern gehen, die ihre Praxis mit uns teilen.",
+    "Plekk läuft bei echten Betrieben: Termine, Reservierungen und Bestellungen kommen an, Kunden erhalten ihre Bestätigung, und Sie sehen alles im Dashboard. Wir bauen weiter mit den Unternehmern, die es täglich nutzen."
+   ],
+   [
+    "Entdecken Sie den Prototyp und besprechen Sie einen Pilotbetrieb. Hier schließen Sie kein kostenpflichtiges Abo ab. Der echte Start braucht bestätigte Funktionen, Bedingungen und funktionierende Anbindungen.",
+    "Sie legen Ihren Betrieb selbst an und sind in einer Viertelstunde online. Die ersten 14 Tage sind gratis, danach ab 19 € pro Monat. Monatlich kündbar."
+   ],
+   [
+    "Drei vorgeschlagene Abos, klare Grenzen und 0 % Plekk-Provision. Im Prototyp wird nichts berechnet.",
+    "Drei Abos, klare Grenzen und 0 % Plekk-Provision. Ein fester Betrag pro Monat, nie ein Prozentsatz Ihres Umsatzes."
+   ],
+   [
+    "Termine, Reservierungen und Bestellungen an deinem eigenen Ort. Entdecke den interaktiven Plekk-Prototyp für lokale Betriebe.",
+    "Termine, Reservierungen und Bestellungen an deinem eigenen Ort. Plekk ist die Buchungsplattform für belgische Salons, Restaurants und Imbisse."
+   ],
+   [
+    "Antworten zu Prototyp, Demos, Abos und nächsten Schritten.",
+    "Antworten zu Demos, Abos, Zahlungen und dem Start."
+   ]
+  ]
+ },
+ "legal": {
+  "nl": {
+   "terms": {
+    "slug": "algemene-voorwaarden",
+    "title": "Algemene voorwaarden",
+    "lede": "De afspraken tussen Marleo en de zaken die Plekk gebruiken. Geschreven om te begrijpen, niet om te verbergen.",
+    "sections": [
+     [
+      "1. Wie is Plekk",
+      [
+       "Plekk is een dienst van Marleo, met zetel in Deinze, België. Je bereikt ons op hallo@plekk.be.",
+       "Deze voorwaarden gelden tussen Marleo en de onderneming die een Plekk-abonnement afsluit — hierna 'de zaak'. Ze gelden niet tussen de zaak en haar eigen klanten: wat de zaak met haar klanten afspreekt over annuleren, waarborgen of no-shows, bepaalt de zaak zelf."
+      ]
+     ],
+     [
+      "2. Wat Plekk doet",
+      [
+       "Plekk geeft je zaak een eigen boekingspagina en een dashboard waarin afspraken, reservaties of bestellingen binnenkomen. Wij verzorgen de software, de hosting en de bevestigingsmails.",
+       "Plekk is geen tussenpersoon in de overeenkomst tussen jou en je klant. Wij nemen geen commissie op je omzet en zijn geen partij bij wat je klant bij jou koopt of boekt."
+      ]
+     ],
+     [
+      "3. Abonnement, prijs en betaling",
+      [
+       "Elke nieuwe zaak start met 14 dagen gratis. Je hoeft in die periode niet te betalen en kan op elk moment stoppen.",
+       "Daarna kies je een formule: Solo (€ 19), Zaak (€ 39) of Zaak+ (€ 69) per maand, exclusief btw. Bij jaarlijkse betaling betaal je tien maanden voor twaalf.",
+       "Betalingen verlopen via Stripe. Het bedrag wordt telkens vooraf aangerekend voor de volgende periode. Facturen vind je in je dashboard onder Abonnement.",
+       "Lukt een betaling niet, dan brengen we je op de hoogte en heb je tien dagen om ze in orde te brengen. Daarna zetten we online boeken op pauze; je gegevens blijven bewaard."
+      ]
+     ],
+     [
+      "4. Opzeggen",
+      [
+       "Je zegt zelf op via je dashboard, zonder opzegtermijn en zonder uitleg. Je abonnement loopt door tot het einde van de betaalde periode; er wordt niets terugbetaald voor de resterende dagen.",
+       "Wij kunnen een abonnement stopzetten bij aanhoudend wanbetalen, bij misbruik van de dienst, of als de zaak Plekk gebruikt voor iets dat wettelijk niet mag. We laten dat altijd eerst per e-mail weten."
+      ]
+     ],
+     [
+      "5. Je gegevens blijven van jou",
+      [
+       "De klantgegevens, boekingen en teksten die je in Plekk zet, blijven eigendom van je zaak. Wij gebruiken ze enkel om de dienst te leveren, nooit om ze door te verkopen.",
+       "Je kan je gegevens op elk moment exporteren. Na het einde van je abonnement bewaren we ze nog 60 dagen, zodat je niets kwijt bent als je terugkomt. Daarna verwijderen we ze."
+      ]
+     ],
+     [
+      "6. Beschikbaarheid",
+      [
+       "We doen ons best om Plekk altijd draaiende te houden, maar we beloven geen ononderbroken beschikbaarheid. Onderhoud kondigen we vooraf aan wanneer dat kan.",
+       "Bij een storing herstellen we zo snel mogelijk. Duurt een storing langer dan 24 uur aan één stuk, dan krijg je die dagen terug op je volgende factuur."
+      ]
+     ],
+     [
+      "7. Aansprakelijkheid",
+      [
+       "Onze aansprakelijkheid is beperkt tot het bedrag dat je de laatste twaalf maanden voor Plekk betaald hebt. We zijn niet aansprakelijk voor gederfde winst of gemiste boekingen.",
+       "Deze beperking geldt niet bij opzet, zware fout of bij schade aan personen — daar kan een beperking wettelijk niet."
+      ]
+     ],
+     [
+      "8. Wijzigingen",
+      [
+       "We kunnen deze voorwaarden aanpassen. Belangrijke wijzigingen melden we minstens 30 dagen vooraf per e-mail. Ben je het er niet mee eens, dan kan je opzeggen voor ze ingaan.",
+       "Prijswijzigingen gelden nooit tijdens een lopende betaalde periode."
+      ]
+     ],
+     [
+      "9. Toepasselijk recht",
+      [
+       "Op deze voorwaarden is het Belgisch recht van toepassing. Geschillen brengen we eerst in gesprek; raken we er niet uit, dan zijn de rechtbanken van Gent bevoegd."
+      ]
+     ]
+    ]
+   },
+   "privacy": {
+    "slug": "privacyverklaring",
+    "title": "Privacyverklaring",
+    "lede": "Welke gegevens Plekk verwerkt, waarom, hoe lang, en wat je daaraan kan doen.",
+    "sections": [
+     [
+      "Wie verwerkt je gegevens",
+      [
+       "Marleo, Deinze, België, is verwerkingsverantwoordelijke voor de gegevens van de zaken die Plekk gebruiken. Contact: hallo@plekk.be.",
+       "Voor de gegevens van de klanten van een zaak is die zaak zelf verantwoordelijk. Plekk is daar verwerker: we verwerken die gegevens enkel in opdracht van de zaak."
+      ]
+     ],
+     [
+      "Welke gegevens en waarom",
+      [
+       "Van de zaak: naam, adres, telefoon, e-mail, btw-nummer en de gegevens van de eigenaar-login. Nodig om je account te beheren en te factureren.",
+       "Van de klanten van een zaak: naam, telefoon, e-mail, de boeking zelf en eventuele opmerkingen. Nodig om de afspraak, reservatie of bestelling uit te voeren en te bevestigen.",
+       "Technische gegevens: IP-adres en tijdstip bij het aanmelden, om misbruik tegen te gaan.",
+       "We gebruiken geen advertentiecookies en volgen bezoekers niet over andere websites."
+      ]
+     ],
+     [
+      "Rechtsgrond",
+      [
+       "Voor de zaak: de uitvoering van het abonnement (artikel 6.1.b AVG) en onze wettelijke boekhoudplicht (artikel 6.1.c).",
+       "Voor de klanten van een zaak: de uitvoering van hun boeking, in opdracht van de zaak."
+      ]
+     ],
+     [
+      "Hoe lang we bewaren",
+      [
+       "Boekingsgegevens: zolang de zaak ze nodig heeft, en daarna 60 dagen na het einde van het abonnement.",
+       "Facturen en boekhouding: zeven jaar, zoals de wet oplegt.",
+       "Aanmeldlogs: twaalf maanden."
+      ]
+     ],
+     [
+      "Met wie we delen",
+      [
+       "Supabase (Europese servers) voor de database.",
+       "Resend en Amazon SES voor het versturen van bevestigings- en herinneringsmails.",
+       "Stripe voor de betalingen. Stripe verwerkt kaartgegevens rechtstreeks; Plekk ziet en bewaart nooit een kaartnummer.",
+       "Verder delen we niets met derden en verkopen we nooit gegevens."
+      ]
+     ],
+     [
+      "Je rechten",
+      [
+       "Je kan je gegevens inzien, verbeteren, laten verwijderen of meenemen naar een andere dienst. Vraag het via hallo@plekk.be; we antwoorden binnen 30 dagen.",
+       "Ben je niet tevreden met hoe we ermee omgaan, dan kan je klacht neerleggen bij de Gegevensbeschermingsautoriteit, Drukpersstraat 35, 1000 Brussel."
+      ]
+     ],
+     [
+      "Cookies",
+      [
+       "Plekk gebruikt één cookie om je aangemeld te houden en één om je taalkeuze te onthouden. Beide zijn noodzakelijk voor de werking, dus daar is geen toestemming voor nodig.",
+       "Op de publieke boekingspagina's van zaken staan geen tracking- of advertentiecookies."
+      ]
+     ],
+     [
+      "Beveiliging",
+      [
+       "Alle verkeer loopt over HTTPS. Wachtwoorden bewaren we enkel als hash, nooit leesbaar. De database staat binnen de EU.",
+       "Ontdek je een beveiligingsprobleem? Meld het op hallo@plekk.be. We reageren binnen twee werkdagen en stellen je op de hoogte van de oplossing."
+      ]
+     ]
+    ]
+   }
+  },
+  "fr": {
+   "terms": {
+    "slug": "conditions-generales",
+    "title": "Conditions générales",
+    "lede": "Les accords entre Marleo et les commerces qui utilisent Plekk. Écrits pour être compris.",
+    "sections": [
+     [
+      "1. Qui est Plekk",
+      [
+       "Plekk est un service de Marleo, dont le siège est à Deinze, en Belgique. Contact : hallo@plekk.be.",
+       "Ces conditions s’appliquent entre Marleo et l’entreprise qui souscrit un abonnement Plekk. Elles ne régissent pas la relation entre ce commerce et ses propres clients."
+      ]
+     ],
+     [
+      "2. Ce que fait Plekk",
+      [
+       "Plekk donne à votre commerce sa page de réservation et un tableau de bord où arrivent rendez-vous, réservations et commandes. Nous fournissons le logiciel, l’hébergement et les e-mails de confirmation.",
+       "Plekk n’est pas intermédiaire dans le contrat entre vous et votre client, et ne prend aucune commission sur votre chiffre d’affaires."
+      ]
+     ],
+     [
+      "3. Abonnement, prix et paiement",
+      [
+       "Chaque nouveau commerce commence par 14 jours gratuits, sans engagement.",
+       "Ensuite : Solo (19 €), Zaak (39 €) ou Zaak+ (69 €) par mois, hors TVA. En paiement annuel, vous payez dix mois pour douze.",
+       "Les paiements passent par Stripe et sont facturés d’avance. Vos factures se trouvent dans votre tableau de bord.",
+       "En cas d’échec de paiement, vous disposez de dix jours pour régulariser. Ensuite la réservation en ligne est mise en pause ; vos données sont conservées."
+      ]
+     ],
+     [
+      "4. Résiliation",
+      [
+       "Vous résiliez vous-même depuis votre tableau de bord, sans préavis. L’abonnement court jusqu’à la fin de la période payée, sans remboursement au prorata.",
+       "Nous pouvons mettre fin à un abonnement en cas de non-paiement persistant, d’abus ou d’usage illégal, toujours après un avertissement par e-mail."
+      ]
+     ],
+     [
+      "5. Vos données restent les vôtres",
+      [
+       "Les données clients, réservations et textes que vous placez dans Plekk restent la propriété de votre commerce. Nous ne les revendons jamais.",
+       "Vous pouvez les exporter à tout moment. Après la fin de l’abonnement, nous les conservons 60 jours, puis les supprimons."
+      ]
+     ],
+     [
+      "6. Disponibilité",
+      [
+       "Nous faisons de notre mieux pour maintenir Plekk en ligne, sans garantir une disponibilité ininterrompue. La maintenance est annoncée à l’avance quand c’est possible.",
+       "Si une panne dure plus de 24 heures d’affilée, ces jours vous sont crédités sur la facture suivante."
+      ]
+     ],
+     [
+      "7. Responsabilité",
+      [
+       "Notre responsabilité est limitée au montant payé pour Plekk durant les douze derniers mois. Nous ne répondons pas du manque à gagner ni des réservations manquées.",
+       "Cette limite ne vaut pas en cas de dol, de faute lourde ou de dommage corporel."
+      ]
+     ],
+     [
+      "8. Modifications",
+      [
+       "Nous pouvons adapter ces conditions. Les changements importants sont annoncés au moins 30 jours à l’avance par e-mail ; vous pouvez résilier avant leur entrée en vigueur.",
+       "Aucun changement de prix ne s’applique pendant une période déjà payée."
+      ]
+     ],
+     [
+      "9. Droit applicable",
+      [
+       "Le droit belge s’applique. En cas de litige, nous cherchons d’abord une solution amiable ; à défaut, les tribunaux de Gand sont compétents."
+      ]
+     ]
+    ]
+   },
+   "privacy": {
+    "slug": "declaration-de-confidentialite",
+    "title": "Déclaration de confidentialité",
+    "lede": "Quelles données Plekk traite, pourquoi, combien de temps, et ce que vous pouvez y faire.",
+    "sections": [
+     [
+      "Qui traite vos données",
+      [
+       "Marleo, Deinze, Belgique, est responsable du traitement pour les données des commerces qui utilisent Plekk. Contact : hallo@plekk.be.",
+       "Pour les données des clients d’un commerce, ce commerce est responsable ; Plekk agit comme sous-traitant."
+      ]
+     ],
+     [
+      "Quelles données et pourquoi",
+      [
+       "Du commerce : nom, adresse, téléphone, e-mail, numéro de TVA et identifiants du gérant. Nécessaires à la gestion du compte et à la facturation.",
+       "Des clients : nom, téléphone, e-mail, la réservation et d’éventuelles remarques. Nécessaires pour exécuter et confirmer la réservation.",
+       "Données techniques : adresse IP et horodatage à la connexion, contre les abus.",
+       "Aucun cookie publicitaire, aucun suivi sur d’autres sites."
+      ]
+     ],
+     [
+      "Base légale",
+      [
+       "Pour le commerce : l’exécution de l’abonnement (art. 6.1.b RGPD) et nos obligations comptables (art. 6.1.c).",
+       "Pour les clients : l’exécution de leur réservation, pour le compte du commerce."
+      ]
+     ],
+     [
+      "Durées de conservation",
+      [
+       "Réservations : le temps utile au commerce, puis 60 jours après la fin de l’abonnement.",
+       "Factures et comptabilité : sept ans, comme l’impose la loi.",
+       "Journaux de connexion : douze mois."
+      ]
+     ],
+     [
+      "Avec qui nous partageons",
+      [
+       "Supabase (serveurs européens) pour la base de données.",
+       "Resend et Amazon SES pour l’envoi des e-mails.",
+       "Stripe pour les paiements. Stripe traite les données de carte directement ; Plekk ne voit ni ne conserve jamais un numéro de carte.",
+       "Rien d’autre n’est partagé, et nous ne vendons jamais de données."
+      ]
+     ],
+     [
+      "Vos droits",
+      [
+       "Vous pouvez consulter, corriger, supprimer ou emporter vos données. Écrivez à hallo@plekk.be ; nous répondons sous 30 jours.",
+       "Vous pouvez introduire une plainte auprès de l’Autorité de protection des données, rue de la Presse 35, 1000 Bruxelles."
+      ]
+     ],
+     [
+      "Cookies",
+      [
+       "Plekk utilise un cookie pour vous garder connecté et un pour mémoriser votre langue. Tous deux sont nécessaires, donc sans consentement requis.",
+       "Les pages publiques de réservation ne contiennent aucun cookie de suivi."
+      ]
+     ],
+     [
+      "Sécurité",
+      [
+       "Tout le trafic passe en HTTPS. Les mots de passe ne sont conservés que sous forme de hash. La base de données se trouve dans l’UE.",
+       "Vous découvrez une faille ? Signalez-la à hallo@plekk.be ; nous réagissons sous deux jours ouvrables."
+      ]
+     ]
+    ]
+   }
+  },
+  "en": {
+   "terms": {
+    "slug": "terms",
+    "title": "Terms and conditions",
+    "lede": "The agreements between Marleo and the businesses using Plekk. Written to be understood.",
+    "sections": [
+     [
+      "1. Who Plekk is",
+      [
+       "Plekk is a service of Marleo, based in Deinze, Belgium. Contact: hallo@plekk.be.",
+       "These terms apply between Marleo and the business subscribing to Plekk. They do not govern the relationship between that business and its own customers."
+      ]
+     ],
+     [
+      "2. What Plekk does",
+      [
+       "Plekk gives your business its own booking page and a dashboard where appointments, reservations and orders arrive. We provide the software, the hosting and the confirmation emails.",
+       "Plekk is not an intermediary in the agreement between you and your customer, and takes no commission on your revenue."
+      ]
+     ],
+     [
+      "3. Subscription, price and payment",
+      [
+       "Every new business starts with 14 free days, with no obligation.",
+       "After that: Solo (€19), Zaak (€39) or Zaak+ (€69) per month, excluding VAT. Paying yearly means ten months for twelve.",
+       "Payments run through Stripe and are charged in advance. Invoices are in your dashboard.",
+       "If a payment fails you have ten days to settle it. After that online booking is paused; your data is kept."
+      ]
+     ],
+     [
+      "4. Cancelling",
+      [
+       "You cancel yourself from your dashboard, with no notice period. The subscription runs to the end of the paid period; no partial refunds.",
+       "We may end a subscription for persistent non-payment, abuse, or unlawful use — always after an email warning first."
+      ]
+     ],
+     [
+      "5. Your data stays yours",
+      [
+       "Customer data, bookings and texts you put into Plekk remain your business's property. We never resell them.",
+       "You can export at any time. After your subscription ends we keep the data for 60 days, then delete it."
+      ]
+     ],
+     [
+      "6. Availability",
+      [
+       "We do our best to keep Plekk running, but do not promise uninterrupted availability. Maintenance is announced ahead where possible.",
+       "If an outage lasts more than 24 hours in a row, those days are credited on your next invoice."
+      ]
+     ],
+     [
+      "7. Liability",
+      [
+       "Our liability is limited to what you paid for Plekk in the last twelve months. We are not liable for lost profit or missed bookings.",
+       "This limit does not apply to intent, gross negligence, or personal injury."
+      ]
+     ],
+     [
+      "8. Changes",
+      [
+       "We may adapt these terms. Important changes are announced at least 30 days ahead by email; you can cancel before they take effect.",
+       "Price changes never apply during a period already paid for."
+      ]
+     ],
+     [
+      "9. Applicable law",
+      [
+       "Belgian law applies. Disputes are discussed first; failing that, the courts of Ghent have jurisdiction."
+      ]
+     ]
+    ]
+   },
+   "privacy": {
+    "slug": "privacy",
+    "title": "Privacy statement",
+    "lede": "What data Plekk processes, why, for how long, and what you can do about it.",
+    "sections": [
+     [
+      "Who processes your data",
+      [
+       "Marleo, Deinze, Belgium, is the controller for the data of businesses using Plekk. Contact: hallo@plekk.be.",
+       "For the data of a business's customers, that business is the controller; Plekk acts as processor."
+      ]
+     ],
+     [
+      "What data and why",
+      [
+       "From the business: name, address, phone, email, VAT number and owner login. Needed to run your account and invoice you.",
+       "From customers: name, phone, email, the booking itself and any notes. Needed to carry out and confirm the booking.",
+       "Technical data: IP address and timestamp at sign-in, to prevent abuse.",
+       "No advertising cookies, and no tracking across other websites."
+      ]
+     ],
+     [
+      "Legal basis",
+      [
+       "For the business: performance of the subscription (art. 6.1.b GDPR) and our statutory accounting duty (art. 6.1.c).",
+       "For customers: performance of their booking, on the business's instructions."
+      ]
+     ],
+     [
+      "How long we keep it",
+      [
+       "Booking data: as long as the business needs it, then 60 days after the subscription ends.",
+       "Invoices and accounts: seven years, as the law requires.",
+       "Sign-in logs: twelve months."
+      ]
+     ],
+     [
+      "Who we share with",
+      [
+       "Supabase (European servers) for the database.",
+       "Resend and Amazon SES for sending emails.",
+       "Stripe for payments. Stripe handles card details directly; Plekk never sees or stores a card number.",
+       "Nothing else is shared, and we never sell data."
+      ]
+     ],
+     [
+      "Your rights",
+      [
+       "You can access, correct, delete or take your data elsewhere. Write to hallo@plekk.be; we answer within 30 days.",
+       "You may lodge a complaint with the Belgian Data Protection Authority, Drukpersstraat 35, 1000 Brussels."
+      ]
+     ],
+     [
+      "Cookies",
+      [
+       "Plekk uses one cookie to keep you signed in and one to remember your language. Both are necessary, so no consent is required.",
+       "The public booking pages carry no tracking cookies."
+      ]
+     ],
+     [
+      "Security",
+      [
+       "All traffic runs over HTTPS. Passwords are stored only as hashes. The database sits within the EU.",
+       "Found a security issue? Report it to hallo@plekk.be; we respond within two working days."
+      ]
+     ]
+    ]
+   }
+  },
+  "de": {
+   "terms": {
+    "slug": "agb",
+    "title": "Allgemeine Geschäftsbedingungen",
+    "lede": "Die Vereinbarungen zwischen Marleo und den Betrieben, die Plekk nutzen. Zum Verstehen geschrieben.",
+    "sections": [
+     [
+      "1. Wer Plekk ist",
+      [
+       "Plekk ist ein Dienst von Marleo mit Sitz in Deinze, Belgien. Kontakt: hallo@plekk.be.",
+       "Diese Bedingungen gelten zwischen Marleo und dem Betrieb, der ein Plekk-Abo abschließt. Für das Verhältnis zwischen diesem Betrieb und seinen eigenen Kunden gelten sie nicht."
+      ]
+     ],
+     [
+      "2. Was Plekk tut",
+      [
+       "Plekk gibt Ihrem Betrieb eine eigene Buchungsseite und ein Dashboard, in dem Termine, Reservierungen und Bestellungen eingehen. Wir liefern Software, Hosting und Bestätigungsmails.",
+       "Plekk ist kein Vermittler im Vertrag zwischen Ihnen und Ihrem Kunden und nimmt keine Provision auf Ihren Umsatz."
+      ]
+     ],
+     [
+      "3. Abo, Preis und Zahlung",
+      [
+       "Jeder neue Betrieb startet mit 14 kostenlosen Tagen, unverbindlich.",
+       "Danach: Solo (19 €), Zaak (39 €) oder Zaak+ (69 €) pro Monat, zzgl. MwSt. Bei Jahreszahlung zahlen Sie zehn Monate für zwölf.",
+       "Zahlungen laufen über Stripe und werden im Voraus berechnet. Rechnungen finden Sie im Dashboard.",
+       "Scheitert eine Zahlung, haben Sie zehn Tage Zeit. Danach wird die Online-Buchung pausiert; Ihre Daten bleiben erhalten."
+      ]
+     ],
+     [
+      "4. Kündigung",
+      [
+       "Sie kündigen selbst im Dashboard, ohne Frist. Das Abo läuft bis zum Ende der bezahlten Periode; keine anteilige Rückzahlung.",
+       "Wir können ein Abo bei anhaltendem Zahlungsverzug, Missbrauch oder rechtswidriger Nutzung beenden — stets nach vorheriger Mitteilung per E-Mail."
+      ]
+     ],
+     [
+      "5. Ihre Daten bleiben Ihre",
+      [
+       "Kundendaten, Buchungen und Texte in Plekk bleiben Eigentum Ihres Betriebs. Wir verkaufen sie nie weiter.",
+       "Sie können jederzeit exportieren. Nach Abo-Ende bewahren wir die Daten 60 Tage auf und löschen sie danach."
+      ]
+     ],
+     [
+      "6. Verfügbarkeit",
+      [
+       "Wir tun unser Bestes, Plekk am Laufen zu halten, versprechen aber keine ununterbrochene Verfügbarkeit. Wartung kündigen wir nach Möglichkeit an.",
+       "Dauert eine Störung länger als 24 Stunden am Stück, werden diese Tage auf der nächsten Rechnung gutgeschrieben."
+      ]
+     ],
+     [
+      "7. Haftung",
+      [
+       "Unsere Haftung ist auf den Betrag begrenzt, den Sie in den letzten zwölf Monaten für Plekk gezahlt haben. Für entgangenen Gewinn oder verpasste Buchungen haften wir nicht.",
+       "Diese Begrenzung gilt nicht bei Vorsatz, grober Fahrlässigkeit oder Personenschäden."
+      ]
+     ],
+     [
+      "8. Änderungen",
+      [
+       "Wir können diese Bedingungen anpassen. Wesentliche Änderungen kündigen wir mindestens 30 Tage vorher per E-Mail an; Sie können vorher kündigen.",
+       "Preisänderungen gelten nie innerhalb einer bereits bezahlten Periode."
+      ]
+     ],
+     [
+      "9. Anwendbares Recht",
+      [
+       "Es gilt belgisches Recht. Streitigkeiten klären wir zuerst im Gespräch; andernfalls sind die Gerichte in Gent zuständig."
+      ]
+     ]
+    ]
+   },
+   "privacy": {
+    "slug": "datenschutz",
+    "title": "Datenschutzerklärung",
+    "lede": "Welche Daten Plekk verarbeitet, warum, wie lange, und was Sie tun können.",
+    "sections": [
+     [
+      "Wer Ihre Daten verarbeitet",
+      [
+       "Marleo, Deinze, Belgien, ist Verantwortlicher für die Daten der Betriebe, die Plekk nutzen. Kontakt: hallo@plekk.be.",
+       "Für die Daten der Kunden eines Betriebs ist dieser Betrieb verantwortlich; Plekk ist Auftragsverarbeiter."
+      ]
+     ],
+     [
+      "Welche Daten und wozu",
+      [
+       "Vom Betrieb: Name, Adresse, Telefon, E-Mail, USt-IdNr. und Inhaber-Login. Nötig für Kontoverwaltung und Rechnungsstellung.",
+       "Von Kunden: Name, Telefon, E-Mail, die Buchung und etwaige Anmerkungen. Nötig zur Ausführung und Bestätigung der Buchung.",
+       "Technische Daten: IP-Adresse und Zeitpunkt bei der Anmeldung, gegen Missbrauch.",
+       "Keine Werbecookies, kein Tracking über andere Websites."
+      ]
+     ],
+     [
+      "Rechtsgrundlage",
+      [
+       "Für den Betrieb: Erfüllung des Abos (Art. 6.1.b DSGVO) und gesetzliche Buchführungspflicht (Art. 6.1.c).",
+       "Für Kunden: Erfüllung ihrer Buchung, im Auftrag des Betriebs."
+      ]
+     ],
+     [
+      "Speicherdauer",
+      [
+       "Buchungsdaten: solange der Betrieb sie braucht, danach 60 Tage nach Abo-Ende.",
+       "Rechnungen und Buchhaltung: sieben Jahre, wie gesetzlich vorgeschrieben.",
+       "Anmeldeprotokolle: zwölf Monate."
+      ]
+     ],
+     [
+      "Mit wem wir teilen",
+      [
+       "Supabase (europäische Server) für die Datenbank.",
+       "Resend und Amazon SES für den Mailversand.",
+       "Stripe für Zahlungen. Stripe verarbeitet Kartendaten direkt; Plekk sieht und speichert nie eine Kartennummer.",
+       "Sonst teilen wir nichts und verkaufen niemals Daten."
+      ]
+     ],
+     [
+      "Ihre Rechte",
+      [
+       "Sie können Ihre Daten einsehen, berichtigen, löschen oder mitnehmen. Schreiben Sie an hallo@plekk.be; wir antworten binnen 30 Tagen.",
+       "Beschwerden richten Sie an die belgische Datenschutzbehörde, Drukpersstraat 35, 1000 Brüssel."
+      ]
+     ],
+     [
+      "Cookies",
+      [
+       "Plekk nutzt ein Cookie, um Sie angemeldet zu halten, und eines für Ihre Sprachwahl. Beide sind notwendig, daher ohne Einwilligung zulässig.",
+       "Auf den öffentlichen Buchungsseiten gibt es keine Tracking-Cookies."
+      ]
+     ],
+     [
+      "Sicherheit",
+      [
+       "Der gesamte Verkehr läuft über HTTPS. Passwörter speichern wir nur als Hash. Die Datenbank steht in der EU.",
+       "Sicherheitsproblem entdeckt? Melden Sie es an hallo@plekk.be; wir reagieren binnen zwei Werktagen."
+      ]
+     ]
+    ]
+   }
+  }
+ },
+ "footerLabel": {
+  "nl": [
+   "Algemene voorwaarden",
+   "Privacyverklaring"
+  ],
+  "fr": [
+   "Conditions générales",
+   "Confidentialité"
+  ],
+  "en": [
+   "Terms",
+   "Privacy"
+  ],
+  "de": [
+   "AGB",
+   "Datenschutz"
+  ]
+ },
+ "updated": {
+  "nl": "Laatst bijgewerkt",
+  "fr": "Dernière mise à jour",
+  "en": "Last updated",
+  "de": "Zuletzt aktualisiert"
+ },
+ "date": {
+  "nl": "10 september 2026",
+  "fr": "10 septembre 2026",
+  "en": "10 September 2026",
+  "de": "10. September 2026"
+ }
+}

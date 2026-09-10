@@ -1,6 +1,8 @@
 // Rooktest van de launch-features: admin → nieuwe zaak → eigenaar → menu → klant bestelt (FR) → annuleert → rapport/export/QR.
 import { chromium } from "playwright";
 const BASE = process.env.BASE ?? "http://localhost:3600";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "e2e@plekk.be";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "e2e-wachtwoord-1234";
 const log = (m) => console.log("•", m);
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, ignoreHTTPSErrors: true });
@@ -8,7 +10,7 @@ const page = await ctx.newPage();
 
 // 1. admin login → nieuwe zaak
 await page.goto(BASE + "/login");
-await page.fill("#password", "plekk1234");
+await page.fill("#email", ADMIN_EMAIL); await page.fill("#password", ADMIN_PASSWORD);
 await page.getByRole("button", { name: "Inloggen" }).click();
 await page.waitForURL(/\/app/);
 await page.goto(BASE + "/admin");
