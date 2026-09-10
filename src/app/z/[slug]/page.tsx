@@ -7,6 +7,7 @@ import { publicStrings, publicLocaleTag } from "@/i18n/public";
 import { BookingFlow } from "@/components/booking/BookingFlow";
 import { PoweredBy } from "@/components/PoweredBy";
 import { DemoBanner } from "@/components/DemoBanner";
+import { accessFor } from "@/lib/plan-access";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +28,8 @@ export default async function PublicOrgPage({ params }: PageProps<"/z/[slug]">) 
   const flowT = { ...rest, localeTag: publicLocaleTag(org.locale), depositNoteText: depositNote(org.settings.depositFromPartySize ?? 0, euro(org.settings.depositCentsPerPerson ?? 0), "{total}") };
   const cta = org.mode === "salon" ? t.ctaSalon : org.mode === "restaurant" ? t.ctaRestaurant : t.ctaTakeaway;
   const hours = Object.entries(org.openingHours).sort(([a], [b]) => ((Number(a) + 6) % 7) - ((Number(b) + 6) % 7));
+  // Demozaken blijven altijd boekbaar; echte zaken volgen hun abonnement.
+  const bookable = org.plan === "demo" || accessFor(org).active;
 
   return (
     <div className="flex-1" style={{ ["--brand" as string]: org.brandColor }}>
@@ -41,13 +44,22 @@ export default async function PublicOrgPage({ params }: PageProps<"/z/[slug]">) 
 
       <main className="mx-auto max-w-5xl px-5 py-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_300px]">
         <section className="min-w-0">
-          <h2 className="text-2xl font-bold mb-4">{cta}</h2>
+          {bookable && <h2 className="text-2xl font-bold mb-4">{cta}</h2>}
+          {!bookable ? (
+            /* Abonnement verlopen: geen foutmelding maar een nette boodschap met het telefoonnummer,
+               zodat de klant van de zaak niet in de kou staat. */
+            <div className="card p-6">
+              <p className="font-semibold">{t.temporarilyClosed}</p>
+              <p className="mt-1 text-muted">{org.phone ? `${t.changeOrCancel} ${t.call} ${org.phone}` : t.tryLater}</p>
+            </div>
+          ) : (
           <BookingFlow
             org={{ slug: org.slug, name: org.name, mode: org.mode, brandColor: org.brandColor, settings: org.settings }}
             resources={resources.map((r) => ({ id: r.id, name: r.name, kind: r.kind, capacity: r.capacity, minParty: r.minParty }))}
             offerings={offerings.map((o) => ({ id: o.id, kind: o.kind, name: o.name, category: o.category, description: o.description, durationMin: o.durationMin, priceCents: o.priceCents, options: o.options ?? [] }))}
             t={flowT}
           />
+          )}
         </section>
 
         <aside className="space-y-4 md:sticky md:top-6 self-start">
