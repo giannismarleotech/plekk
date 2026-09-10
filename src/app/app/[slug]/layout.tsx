@@ -10,6 +10,7 @@ import { InstallApp } from "@/components/dashboard/InstallApp";
 import { MobileNav, type NavItem } from "@/components/dashboard/MobileNav";
 import { NavIcon } from "@/components/dashboard/NavIcon";
 import { onboardingSteps } from "@/lib/onboarding";
+import { accessFor } from "@/lib/plan-access";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,7 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
   const steps = org.plan === "demo" ? [] : await onboardingSteps(org);
   const todo = steps.filter((x) => !x.done).length;
   const takeaway = org.mode === "takeaway";
+  const billing = accessFor(org);
 
   const nav: NavItem[] = [
     ...(steps.length && todo ? [{ href: "/start", label: `Aan de slag (${todo})`, short: "Start", icon: "rocket" as const, highlight: true }] : []),
@@ -32,6 +34,7 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
     { href: "/klanten", label: "Klanten", short: "Klanten", icon: "people" as const },
     { href: "/rapporten", label: "Rapporten", short: "Cijfers", icon: "chart" as const },
     { href: "/instellingen", label: "Instellingen", short: "Instel", icon: "settings" as const },
+    ...(org.plan === "demo" ? [] : [{ href: "/abonnement", label: billing.warning ? "Abonnement ⚠" : "Abonnement", short: "Abo", icon: "card" as const }]),
     ...(steps.length && !todo ? [{ href: "/start", label: "Stappenplan", short: "Start", icon: "rocket" as const }] : []),
   ];
 
@@ -68,7 +71,16 @@ export default async function OrgLayout({ children, params }: LayoutProps<"/app/
           <div className="mt-auto pt-4 border-t border-line flex flex-col gap-3 text-sm">{extra}</div>
         </aside>
 
-        <main className="p-4 md:p-8 min-w-0">{children}</main>
+        <main className="p-4 md:p-8 min-w-0">
+          {/* Eén rustige balk boven alles, in plaats van een pop-up op elke pagina. */}
+          {org.plan !== "demo" && billing.warning && (
+            <Link href={`/app/${slug}/abonnement`} className={`mb-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border px-4 py-3 text-sm ${billing.active ? "border-line bg-surface" : "border-orange-500 bg-orange-50"}`}>
+              <span className="font-semibold">{billing.warning}</span>
+              <span className="underline">Bekijk je abonnement ↗</span>
+            </Link>
+          )}
+          {children}
+        </main>
       </div>
       <MobileNav slug={slug} items={nav} extra={extra} />
     </div>
