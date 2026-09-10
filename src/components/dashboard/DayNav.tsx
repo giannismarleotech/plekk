@@ -13,11 +13,11 @@ export function DayNav({ base, day, today }: { base: string; day: string; today:
   const week = Array.from({ length: 7 }, (_, i) => shift(day, i - 3));
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-2 flex-wrap">
-        <Link href={`${base}?dag=${shift(day, -1)}`} className="btn-ghost px-3 py-1.5" aria-label="Vorige dag">‹</Link>
-        <span className="font-bold text-lg min-w-[14ch]">{cap(fmtDate(new Date(`${day}T12:00:00`)))}{day === today ? <span className="ml-2 text-xs font-semibold px-1.5 py-0.5 rounded" style={{ background: "#1ED760", color: "#101814" }}>vandaag</span> : null}</span>
-        <Link href={`${base}?dag=${shift(day, 1)}`} className="btn-ghost px-3 py-1.5" aria-label="Volgende dag">›</Link>
-        {day !== today && <Link href={`${base}?dag=${today}`} className="text-sm underline">Naar vandaag</Link>}
+      <div className="flex items-center gap-2">
+        <Link href={`${base}?dag=${shift(day, -1)}`} className="btn-ghost px-3 py-1.5 shrink-0" aria-label="Vorige dag">‹</Link>
+        <span className="flex-1 min-w-0 flex items-baseline gap-2"><span className="font-bold text-base sm:text-lg truncate">{cap(fmtDate(new Date(`${day}T12:00:00`)))}</span>{day === today && <span className="shrink-0 text-xs font-semibold px-1.5 py-0.5 rounded" style={{ background: "#1ED760", color: "#101814" }}>vandaag</span>}</span>
+        <Link href={`${base}?dag=${shift(day, 1)}`} className="btn-ghost px-3 py-1.5 shrink-0" aria-label="Volgende dag">›</Link>
+        {day !== today && <Link href={`${base}?dag=${today}`} className="text-sm underline shrink-0 whitespace-nowrap">Vandaag</Link>}
       </div>
       <div className="flex gap-1 overflow-x-auto">
         {week.map((d) => (
