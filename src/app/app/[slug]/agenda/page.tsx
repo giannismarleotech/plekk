@@ -24,9 +24,9 @@ export default async function AgendaPage({ params, searchParams }: PageProps<"/a
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
         <h1 className="text-2xl font-bold">{org.mode === "takeaway" ? "Bestellingen" : "Agenda"}</h1>
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex flex-col sm:flex-row sm:items-start gap-3">
           <DayNav base={`/app/${slug}/agenda`} day={day} today={today} />
           <ManualBooking slug={slug} mode={org.mode} day={day} resources={resources.filter((r) => r.kind !== "kitchen").map((r) => ({ id: r.id, name: r.name, extra: r.kind === "table" ? `${r.capacity} pl.` : undefined }))} offerings={offerings.filter((o) => o.kind === "service").map((o) => ({ id: o.id, name: o.name, extra: minutesLabel(o.durationMin ?? 0) }))} />
         </div>
