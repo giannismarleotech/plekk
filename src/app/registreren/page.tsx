@@ -46,7 +46,7 @@ export default async function RegisterPage({ searchParams }: PageProps<"/registr
           <label className="block"><span className="label">Wachtwoord (min. 8 tekens)</span><input name="password" type="password" required minLength={8} className="input" autoComplete="new-password" /></label>
         </div>
         <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-        <label className="flex items-start gap-2 text-sm"><input type="checkbox" name="terms" required className="mt-1" /><span>Ik ga akkoord met de <a href="/nl/algemene-voorwaarden" target="_blank" className="underline">algemene voorwaarden</a> en de <a href="/nl/privacy" target="_blank" className="underline">privacyverklaring</a>.</span></label>
+        <label className="flex items-start gap-2 text-sm"><input type="checkbox" name="terms" required className="mt-1" /><span>Ik ga akkoord met de <a href="/nl/algemene-voorwaarden/" target="_blank" className="underline">algemene voorwaarden</a> en de <a href="/nl/privacyverklaring/" target="_blank" className="underline">privacyverklaring</a>.</span></label>
         {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
         <button className="btn-brand w-full">Start gratis</button>
         <p className="text-xs text-muted text-center">Al een account? <Link href="/login" className="underline">Inloggen</Link></p>

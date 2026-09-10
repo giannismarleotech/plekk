@@ -22,7 +22,9 @@ export async function register(form: FormData) {
   const db = await getDb();
   if (await db.query.users.findFirst({ where: eq(schema.users.email, email) })) back("Er bestaat al een account met dit e-mailadres. Log in.");
   const res = await createOrganisation({
-    name: g("name"), mode, city: g("city"), email, phone: g("phone"), plan: "trial",
+    // Tijdens de proefperiode krijgt iedereen alles van "Zaak"; bij het betalen kiest
+    // de zaak zelf en zet de Stripe-webhook het echte pakket.
+    name: g("name"), mode, city: g("city"), email, phone: g("phone"), plan: "zaak",
     locale: (["nl", "fr", "en", "de"].includes(g("locale")) ? g("locale") : "nl") as "nl" | "fr" | "en" | "de",
     owner: { name: g("ownerName") || g("name"), email, password },
   });
