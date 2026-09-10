@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? "plekk.be";
 const RESERVED = new Set(["www", "app", "api", "admin", "mail"]);
 const LOCALES = ["nl", "fr", "en", "de"];
-const APP_PREFIXES = ["/z/", "/app", "/admin", "/login", "/registreren", "/api", "/brand", "/favicon", "/manifest", "/sw.js", "/widget"];
+const APP_PREFIXES = ["/z/", "/app", "/admin", "/login", "/registreren", "/api", "/brand", "/fonts", "/favicon", "/manifest", "/sw.js", "/widget", "/beheer"];
 
 function pickLocale(req: NextRequest) {
   const cookie = req.cookies.get("plekk_lang")?.value;
@@ -36,6 +36,8 @@ export function proxy(req: NextRequest) {
   }
 
   if (APP_PREFIXES.some((p) => pathname === p || pathname.startsWith(p))) return NextResponse.next();
+  // Alles met een bestandsextensie (/style.css, /app.js, /plekk-sculpture.png) is een bestand van de site zelf.
+  if (/\.[a-z0-9]+$/i.test(pathname)) return NextResponse.next();
   const first = pathname.split("/")[1];
   if (LOCALES.includes(first)) {
     const res = NextResponse.next();
