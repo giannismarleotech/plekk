@@ -13,6 +13,7 @@ export type PublicStrings = {
   cancelTitle: string; cancelBody: (hours: number) => string; cancelButton: string; cancelled: string; cancelTooLate: string; manageBooking: string;
   poweredBy: string; noCommission: string;
   demoBadge: string; demoBanner: string; backToSite: string;
+  temporarilyClosed: string; tryLater: string;
 };
 
 const nl: PublicStrings = {
@@ -28,6 +29,7 @@ const nl: PublicStrings = {
   cancelTitle: "Annuleren", cancelBody: (h) => `Je kan zelf annuleren tot ${h} uur vooraf.`, cancelButton: "Ja, annuleer mijn boeking", cancelled: "Geannuleerd. Tot een volgende keer!", cancelTooLate: "Zelf annuleren kan niet meer. Bel de zaak even.", manageBooking: "Boeking beheren",
   poweredBy: "Boeken via", noCommission: "geen commissie, ooit",
   demoBadge: "Demozaak", demoBanner: "Dit is een demozaak van Plekk. Boekingen zijn niet echt — probeer gerust alles uit.", backToSite: "Terug naar plekk.be",
+  temporarilyClosed: "Online boeken staat even op pauze.", tryLater: "Probeer het later opnieuw of kom gewoon langs.",
 };
 
 const fr: PublicStrings = {
@@ -43,6 +45,7 @@ const fr: PublicStrings = {
   cancelTitle: "Annuler", cancelBody: (h) => `Vous pouvez annuler vous-même jusqu’à ${h} h à l’avance.`, cancelButton: "Oui, annuler ma réservation", cancelled: "Annulé. À une prochaine fois !", cancelTooLate: "Il est trop tard pour annuler en ligne. Appelez le commerce.", manageBooking: "Gérer ma réservation",
   poweredBy: "Réservation via", noCommission: "sans commission, jamais",
   demoBadge: "Commerce de démo", demoBanner: "Ceci est un commerce de démonstration Plekk. Les réservations ne sont pas réelles.", backToSite: "Retour sur plekk.be",
+  temporarilyClosed: "La réservation en ligne est momentanément suspendue.", tryLater: "Réessayez plus tard ou passez simplement nous voir.",
 };
 
 const en: PublicStrings = {
@@ -58,6 +61,7 @@ const en: PublicStrings = {
   cancelTitle: "Cancel", cancelBody: (h) => `You can cancel yourself up to ${h} hours in advance.`, cancelButton: "Yes, cancel my booking", cancelled: "Cancelled. See you next time!", cancelTooLate: "Online cancellation is no longer possible. Please call the business.", manageBooking: "Manage booking",
   poweredBy: "Booking via", noCommission: "no commission, ever",
   demoBadge: "Demo business", demoBanner: "This is a Plekk demo business. Bookings aren’t real — feel free to try everything.", backToSite: "Back to plekk.be",
+  temporarilyClosed: "Online booking is paused for a moment.", tryLater: "Try again later or just drop by.",
 };
 
 const de: PublicStrings = {
@@ -73,6 +77,7 @@ const de: PublicStrings = {
   cancelTitle: "Stornieren", cancelBody: (h) => `Sie können bis ${h} Stunden vorher selbst stornieren.`, cancelButton: "Ja, meine Buchung stornieren", cancelled: "Storniert. Bis zum nächsten Mal!", cancelTooLate: "Online-Stornierung ist nicht mehr möglich. Bitte rufen Sie den Betrieb an.", manageBooking: "Buchung verwalten",
   poweredBy: "Buchung über", noCommission: "keine Provision, nie",
   demoBadge: "Demo-Betrieb", demoBanner: "Dies ist ein Plekk-Demo-Betrieb. Buchungen sind nicht echt.", backToSite: "Zurück zu plekk.be",
+  temporarilyClosed: "Online-Buchung ist kurz pausiert.", tryLater: "Versuchen Sie es später noch einmal oder kommen Sie einfach vorbei.",
 };
 
 const all: Record<PublicLocale, PublicStrings> = { nl, fr, en, de };
