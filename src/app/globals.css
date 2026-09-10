@@ -1,20 +1,37 @@
 @import "tailwindcss";
 
+/**
+ * Plekk design system.
+ * Tokens komen 1-op-1 uit de merkstijl: Space Grotesk voor koppen, Inter voor tekst,
+ * papier-achtige achtergrond, fel groen als actiekleur, ruime hoeken (24px).
+ */
 :root {
-  --bg: #f4f5f2;
+  --paper: #f5f6f3;
+  --bg: #f5f6f3;
   --surface: #ffffff;
   --ink: #101814;
   --muted: #5c645e;
-  --line: #e1e4de;
-  --accent: #0f7a38;
-  --accent-ink: #ffffff;
+  --line: #dce1d9;
+  --lime: #1ed760;
   --green: #1ed760;
   --orange: #ff6b1a;
+  --purple: #e9e4f4;
+  --sage: #e9eeea;
+  --mint: #dceee2;
+  --night: #0c120f;
+  --night-2: #111b15;
+  --night-3: #101d14;
+  --on-night: #f2f7f3;
+  --on-night-muted: #9eb3a5;
+  --accent: #0f7a38;
+  --accent-ink: #ffffff;
   --brand: var(--accent);
+  --radius: 24px;
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-paper: var(--paper);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
@@ -22,26 +39,100 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-brand: var(--brand);
+  --color-lime: var(--lime);
   --color-green: var(--green);
   --color-orange: var(--orange);
-  --font-sans: 'Source Sans 3', system-ui, -apple-system, sans-serif;
-  --font-display: 'Outfit', 'Source Sans 3', system-ui, sans-serif;
+  --color-purple: var(--purple);
+  --color-sage: var(--sage);
+  --color-mint: var(--mint);
+  --color-night: var(--night);
+  --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius-brand: 24px;
 }
 
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .display, .font-display { font-family: var(--font-display); letter-spacing: -0.02em; }
+h1, h2, h3, .display, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+h1 { letter-spacing: -0.06em; }
 
-.btn, .btn-brand, .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed; }
+/* ---------- Marketing-bouwstenen ---------- */
+
+/* Kleine bovenkop boven een titel: "01 / VOOR JOUW ZAAK" */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.on-dark .eyebrow, .eyebrow-lime { color: var(--lime); }
+
+/* Sectie met vaste breedte */
+.wrap { width: min(100% - 2.5rem, 1280px); margin-inline: auto; }
+.section { padding-block: clamp(3.5rem, 7vw, 6.5rem); }
+
+/* Donkere blokken */
+.on-dark { background: var(--night); color: var(--on-night); }
+.on-dark .text-muted, .on-dark .muted { color: var(--on-night-muted); }
+
+/* Knoppen */
+.btn, .btn-brand, .btn-ghost, .btn-lime, .btn-dark {
+  @apply inline-flex items-center justify-center gap-2 font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed;
+  border-radius: 14px;
+  padding: 0.75rem 1.15rem;
+}
 .btn-brand { color: #fff; background: var(--brand); }
 .btn-brand:hover { filter: brightness(1.08); }
 .btn-ghost { @apply border border-line bg-surface hover:bg-bg; }
-.input { @apply w-full rounded-lg border border-line bg-surface px-3 py-2.5 outline-none focus:ring-2; --tw-ring-color: var(--brand); }
+/* Hoofdactie: fel groen met donkere tekst, zoals op de merksite */
+.btn-lime { background: var(--lime); color: var(--ink); }
+.btn-lime:hover { filter: brightness(1.06); }
+.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark:hover { filter: brightness(1.25); }
+
+/* Pijl in een rondje, rechts in de knop */
+.btn-arrow::after {
+  content: "↗";
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem; height: 1.5rem;
+  border-radius: 999px;
+  background: rgba(16, 24, 20, 0.12);
+  font-size: 0.8em;
+  margin-left: 0.4rem;
+}
+.btn-dark.btn-arrow::after, .on-dark .btn-dark.btn-arrow::after { background: rgba(255, 255, 255, 0.16); }
+
+/* Kaarten */
+.card { @apply border border-line bg-surface; border-radius: var(--radius); }
+.card-tint { border-radius: var(--radius); border: 1px solid transparent; }
+.tint-green { background: #e3efe6; }
+.tint-sage { background: var(--sage); }
+.tint-mint { background: var(--mint); }
+.tint-peach { background: #fbe3d8; }
+.tint-purple { background: var(--purple); }
+
+/* Formulieren */
+.input { @apply w-full border border-line bg-surface px-3 py-2.5 outline-none focus:ring-2; border-radius: 12px; --tw-ring-color: var(--brand); }
 .label { @apply block text-sm font-semibold mb-1; }
-.card { @apply rounded-xl border border-line bg-surface; }
 .tabular { font-variant-numeric: tabular-nums; }
+
+/* Zachte binnenkomst van secties; uit bij "minder beweging" */
+.reveal { opacity: 0; transform: translateY(14px); animation: reveal-in 0.7s ease forwards; }
+@keyframes reveal-in { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; opacity: 1; transform: none; }
+}
