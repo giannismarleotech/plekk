@@ -24,6 +24,8 @@ async function create(): Promise<Db> {
     if (process.env.AUTO_MIGRATE !== "false") await runMigrations(db);
     // Lege database → demozaken + platformlogin aanmaken (SEED_DEMO=false om dat uit te zetten).
     if (process.env.SEED_DEMO !== "false") { const { seedIfEmpty } = await import("./seed"); await seedIfEmpty(db); }
+    const { ensureAdmin } = await import("./admin");
+    await ensureAdmin(db).catch((e) => console.error("[admin]", e));
     return db;
   }
   const { PGlite } = await import("@electric-sql/pglite");
@@ -42,6 +44,8 @@ async function create(): Promise<Db> {
   await runMigrations(db);
   const { seedIfEmpty } = await import("./seed");
   await seedIfEmpty(db);
+  const { ensureAdmin } = await import("./admin");
+  await ensureAdmin(db).catch((e) => console.error("[admin]", e));
   return db;
 }
 

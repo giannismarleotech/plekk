@@ -36,6 +36,14 @@ export const organisations = pgTable("organisations", {
   openingHours: jsonb("opening_hours").$type<OpeningHours>().notNull(),
   settings: jsonb("settings").$type<OrgSettings>().notNull(),
   plan: text("plan").default("founders").notNull(),
+  // Abonnement bij Stripe. planStatus stuurt wat de zaak mag; de rest is enkel om te tonen.
+  planStatus: text("plan_status").$type<"trialing" | "active" | "past_due" | "canceled" | "none">().default("trialing").notNull(),
+  planInterval: text("plan_interval").$type<"month" | "year">(),
+  planRenewsAt: timestamp("plan_renews_at", { withTimezone: true }),
+  planCancelAtPeriodEnd: boolean("plan_cancel_at_period_end").default(false).notNull(),
+  trialEndsAt: timestamp("trial_ends_at", { withTimezone: true }),
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
   locale: text("locale").$type<"nl" | "fr" | "en" | "de">().default("nl").notNull(),
   publicBaseUrl: text("public_base_url"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
@@ -101,6 +109,7 @@ export const bookings = pgTable("bookings", {
   depositCents: integer("deposit_cents").default(0).notNull(),
   paymentStatus: text("payment_status").$type<"none" | "pending" | "paid" | "failed" | "refunded">().default("none").notNull(),
   paymentRef: text("payment_ref"),
+  paymentProvider: text("payment_provider").$type<"stripe" | "mollie">(),
   reminderSentAt: timestamp("reminder_sent_at", { withTimezone: true }),
   source: text("source").default("online").notNull(), // online | phone | walkin
   reference: text("reference").notNull(), // korte code voor de klant, bv. PK-4F7Q

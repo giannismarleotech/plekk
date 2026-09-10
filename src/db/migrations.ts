@@ -40,5 +40,19 @@ export const migrations: { name: string; statements: string[] }[] = [
       "ALTER TABLE \"organisations\" ADD COLUMN \"locale\" text DEFAULT 'nl' NOT NULL;",
       "ALTER TABLE \"organisations\" ADD COLUMN \"public_base_url\" text;"
     ]
+  },
+  {
+    "name": "0002_billing",
+    "statements": [
+      "ALTER TABLE \"organisations\" ADD COLUMN \"plan_status\" text DEFAULT 'trialing' NOT NULL;",
+      "ALTER TABLE \"organisations\" ADD COLUMN \"plan_interval\" text;",
+      "ALTER TABLE \"organisations\" ADD COLUMN \"plan_renews_at\" timestamp with time zone;",
+      "ALTER TABLE \"organisations\" ADD COLUMN \"plan_cancel_at_period_end\" boolean DEFAULT false NOT NULL;",
+      "ALTER TABLE \"organisations\" ADD COLUMN \"trial_ends_at\" timestamp with time zone;",
+      "ALTER TABLE \"organisations\" ADD COLUMN \"stripe_customer_id\" text;",
+      "ALTER TABLE \"organisations\" ADD COLUMN \"stripe_subscription_id\" text;",
+      "CREATE UNIQUE INDEX \"organisations_stripe_sub_idx\" ON \"organisations\" USING btree (\"stripe_subscription_id\");",
+      "ALTER TABLE \"bookings\" ADD COLUMN \"payment_provider\" text;"
+    ]
   }
 ];

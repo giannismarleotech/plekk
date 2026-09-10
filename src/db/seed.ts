@@ -9,6 +9,12 @@ import { hashPassword } from "@/lib/password";
 import { localToDate } from "@/lib/availability";
 import { isoDay } from "@/lib/format";
 import { addMinutes } from "date-fns";
+import crypto from "node:crypto";
+
+/** Het account achter de één-klik-demo. Heeft enkel toegang tot de drie demozaken. */
+export const DEMO_EMAIL = "demo@plekk.be";
+
+const randomSecret = () => crypto.randomBytes(24).toString("base64url");
 
 const weekdays = (open: string, close: string, days = [1, 2, 3, 4, 5, 6]) =>
   Object.fromEntries(days.map((d) => [String(d), [{ open, close }]])) as s.OpeningHours;
@@ -22,11 +28,22 @@ export async function seedIfEmpty(db: Db) {
 export async function seed(db: Db) {
   const today = isoDay(new Date());
 
-  // ---- Login ----
+  // ---- Logins ----
+  // Twee aparte accounts, bewust. De demo-login is via /api/demo/login zonder wachtwoord
+  // te gebruiken; die mag dus nooit platformbeheerder zijn, anders is iedereen dat.
   const userId = id();
   await db.insert(s.users).values({
-    id: userId, email: "demo@plekk.be", name: "Giannis (demo)", passwordHash: hashPassword("plekk1234"), isPlatformAdmin: true,
+    id: userId, email: DEMO_EMAIL, name: "Demo", passwordHash: hashPassword(randomSecret()), isPlatformAdmin: false,
   });
+
+  // De echte beheerder komt uit de omgeving. Zonder ADMIN_PASSWORD krijgt hij een
+  // willekeurig wachtwoord: dan bestaat het account wel, maar kan niemand erin.
+  const adminEmail = (process.env.ADMIN_EMAIL ?? "giannis@marleo.tech").toLowerCase();
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  await db.insert(s.users).values({
+    id: id(), email: adminEmail, name: "Beheerder", passwordHash: hashPassword(adminPassword || randomSecret()), isPlatformAdmin: true,
+  });
+  if (!adminPassword) console.warn(`[seed] ADMIN_PASSWORD niet gezet — beheerder ${adminEmail} heeft een willekeurig wachtwoord. Zet ADMIN_PASSWORD en draai opnieuw, of gebruik "wachtwoord vergeten".`);
 
   // ---- 1. Kapsalon ----
   const salonId = id();
