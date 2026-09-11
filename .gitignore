@@ -70,3 +70,6 @@ out/
 # Python
 __pycache__/
 *.pyc
+/dist/
+.vinext/
+.wrangler/

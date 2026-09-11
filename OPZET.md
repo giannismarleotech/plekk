@@ -6,7 +6,7 @@ De **app** (boeken, dashboard, betalingen) is Next.js en heeft Node.js nodig.
 | Stuk | Wat het is | Waar het kan |
 |---|---|---|
 | Website (96 pagina's, nl/fr/en/de) | statische HTML | GitHub Pages, Strato via FTP, Cloudflare Pages |
-| App (`/z/…`, `/app/…`, `/api/…`) | Next.js 16 | Cloudflare Workers, Vercel, een VPS — **niet** Strato webhosting |
+| App (`/z/…`, `/app/…`, `/api/…`) | Next.js 16 | Cloudflare Workers, Netlify, een VPS — **niet** Strato webhosting |
 
 ---
 
@@ -21,8 +21,8 @@ Daarna in Cloudflare een CNAME `plekk` → `giannismarleotech.github.io`.
 het subdomein. De `.htaccess` regelt de 404-pagina en compressie.
 
 De site aanpassen doe je nooit rechtstreeks in `public/` — die map wordt bij elke
-build overschreven. Pas `scripts/patch-site.py` aan, draai `npm run site:patch`,
-en pak `public/` opnieuw in als `vendor/marketing-site.tar.gz`.
+build overschreven. Pas `scripts/patch-site.mjs` (of de teksten in `scripts/site-content.json`) aan en draai
+`npm run site:patch`. Het archief in `vendor/` blijft zoals het is.
 
 ---
 
@@ -100,4 +100,35 @@ npm run build        # productiebuild
 npm start            # server op :3000
 npm run check:site   # alle 96 sitepagina's: status en oude teksten
 npm run e2e          # boeken bij salon, restaurant en frituur + dashboard
+```
+
+---
+
+## 6. App op Cloudflare Workers
+
+De app draait op Workers via `vinext`, een vertaallaag die Next.js naar de Workers-runtime
+brengt. `npm run build:vinext` maakt de build, `npm run deploy:vinext` zet ze live.
+
+Twee dingen werken op Workers anders dan op een gewone server, en daar is de code op aangepast:
+
+**Databaseverbindingen zijn per bezoeker.** Cloudflare verbiedt dat een verbinding die tijdens
+het ene verzoek geopend is bij een volgend verzoek hergebruikt wordt. Op een gewone server houd
+je juist één pool open voor het hele proces — dat is daar sneller. `src/db/index.ts` kiest
+automatisch: één pool op Node, één verbinding per verzoek op Workers.
+
+**Migraties draaien één keer per opgestarte instantie**, niet per bezoek. Zodra je database
+ingericht is, zet je `AUTO_MIGRATE=false` en `SEED_DEMO=false`: dan slaat elke koude start ook
+die paar controlequeries over en start de app merkbaar sneller.
+
+Wordt de app traag onder druk, dan is de oorzaak bijna altijd het opzetten van de verbinding
+per verzoek. **Cloudflare Hyperdrive** lost dat op — het houdt de pool buiten de app aan en
+zit in het gratis pakket (100.000 queries per dag). Je maakt er een Hyperdrive-configuratie
+voor aan met je Supabase-adres en zet de binding in `wrangler.jsonc`.
+
+### Lokaal testen zoals het op Cloudflare draait
+
+```bash
+npm run build:vinext
+# zet je variabelen in dist/server/.dev.vars
+npm run start:vinext     # draait de echte Workers-runtime op je machine
 ```
